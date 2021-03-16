@@ -6,8 +6,9 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class UserFactory extends Factory
-{
+use Carbon\Carbon;
+
+class UserFactory extends Factory{
     /**
      * The name of the factory's corresponding model.
      *
@@ -20,14 +21,17 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
-    {
+    public function definition(){
         return [
+            'id' => 1,
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
+            'privilegio' => rand(2,3),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            'created_at' => Carbon::parse(today())->format('Y-m-d'),
+            'updated_at' => Carbon::parse(today())->format('Y-m-d')
         ];
     }
 
