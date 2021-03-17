@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\TrabajadorController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +21,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/oculux', function () {
+    return view('oculux');
+})->middleware(['auth'])->name('oculux');
 
 require __DIR__.'/auth.php';
 
 /**SARIAH */
 /**GUSTAVO */
 /**EYVER */
+Route::get('/Usuario/index', [UsuarioController::class, 'index']);
+Route::get('/Paciente/index', [PacienteController::class, 'index']);
+Route::get('/Trabajador/index', [TrabajadorController::class, 'index']);
