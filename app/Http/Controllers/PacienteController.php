@@ -12,9 +12,9 @@ class PacienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+        $resultado = Paciente::all();
+        return $resultado;
     }
 
     /**

@@ -12,9 +12,9 @@ class TrabajadorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+        $resultado = Trabajador::all();
+        return $resultado;
     }
 
     /**
