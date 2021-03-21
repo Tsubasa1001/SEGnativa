@@ -33,3 +33,5 @@ require __DIR__.'/auth.php';
 Route::get('/Usuario/index', [UsuarioController::class, 'index']);
 Route::get('/Paciente/index', [PacienteController::class, 'index']);
 Route::get('/Trabajador/index', [TrabajadorController::class, 'index']);
+Route::get('/Estadistica/index', [EstadisticaController::class, 'index']);
+Route::get('/Reporte/index', [ReporteController::class, 'index']);
