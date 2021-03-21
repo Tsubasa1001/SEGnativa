@@ -13,12 +13,12 @@
         <!-- ICON -->
         <link rel="icon" href="favicon.ico" type="image/x-icon">
         <!-- VENDOR CSS -->
-        <link rel="stylesheet" href="xor/up/assets/vendor/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="xor/up/assets/vendor/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="xor/up/assets/vendor/animate-css/vivify.min.css">
-        <link rel="stylesheet" href="xor/up/assets/vendor/c3/c3.min.css"/>
+        <link rel="stylesheet" href="http://segnativa.test/xor/up/assets/vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://segnativa.test/xor/up/assets/vendor/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://segnativa.test/xor/up/assets/vendor/animate-css/vivify.min.css">
+        <link rel="stylesheet" href="http://segnativa.test/xor/up/assets/vendor/c3/c3.min.css"/>
         <!-- MAIN CSS -->
-        <link rel="stylesheet" href="xor/same/assets/css/site.min.css">
+        <link rel="stylesheet" href="http://segnativa.test/xor/same/assets/css/site.min.css">
     </head>
 
     <body class="theme-cyan font-montserrat">
@@ -55,10 +55,10 @@
         </div>
 
         <!-- Javascript -->
-        <script src="xor/same/assets/bundles/libscripts.bundle.js"></script>
-        <script src="xor/same/assets/bundles/vendorscripts.bundle.js"></script>
-        <script src="xor/same/assets/bundles/c3.bundle.js"></script>
-        <script src="xor/same/assets/bundles/mainscripts.bundle.js"></script>
-        <script src="xor/same/assets/js/index.js"></script>
+        <script src="http://segnativa.test/xor/same/assets/bundles/libscripts.bundle.js"></script>
+        <script src="http://segnativa.test/xor/same/assets/bundles/vendorscripts.bundle.js"></script>
+        <script src="http://segnativa.test/xor/same/assets/bundles/c3.bundle.js"></script>
+        <script src="http://segnativa.test/xor/same/assets/bundles/mainscripts.bundle.js"></script>
+        <script src="http://segnativa.test/xor/same/assets/js/index.js"></script>
     </body>
 </html>

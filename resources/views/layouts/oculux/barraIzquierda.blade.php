@@ -1,7 +1,7 @@
 <div id="left-sidebar" class="sidebar">
 
     <div class="navbar-brand">
-        <a href="index.html"><img src="xor/up/assets/images/icon.svg" alt="Oculux Logo" class="img-fluid logo"><span>Oculux</span></a>
+        <a href="index.html"><img src="http://segnativa.test/xor/up/assets/images/icon.svg" alt="Oculux Logo" class="img-fluid logo"><span>Oculux</span></a>
         <button type="button" class="btn-toggle-offcanvas btn btn-sm float-right"><i class="lnr lnr-menu icon-close"></i></button>
     </div>
 
@@ -9,7 +9,7 @@
 
         <div class="user-account">
             <div class="user_div">
-                <img src="xor/up/assets/images/user.png" class="user-photo" alt="User Profile Picture">
+                <img src="http://segnativa.test/xor/up/assets/images/user.png" class="user-photo" alt="User Profile Picture">
             </div>
             <div class="dropdown">
                 <span>Welcome,</span>
