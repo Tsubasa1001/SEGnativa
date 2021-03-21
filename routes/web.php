@@ -30,10 +30,10 @@ require __DIR__.'/auth.php';
 /**SARIAH */
 /**GUSTAVO */
 /**EYVER */
-Route::get('/Usuario/index', [UsuarioController::class, 'index']);
-Route::get('/Paciente/index', [PacienteController::class, 'index']);
-Route::get('/Trabajador/index', [TrabajadorController::class, 'index']);
-Route::get('/Estadistica/index', [EstadisticaController::class, 'index']);
-Route::get('/Reporte/index', [ReporteController::class, 'index']);
+Route::get('/Usuario/index', [UsuarioController::class, 'index'])->middleware(['auth'])->name('usuario_index');
+Route::get('/Paciente/index', [PacienteController::class, 'index'])->middleware(['auth'])->name('paciente_index');
+Route::get('/Trabajador/index', [TrabajadorController::class, 'index'])->middleware(['auth'])->name('trabajador_index');
+Route::get('/Estadistica/index', [EstadisticaController::class, 'index'])->middleware(['auth'])->name('estadistica_index');
+Route::get('/Reporte/index', [ReporteController::class, 'index'])->middleware(['auth'])->name('reporte_index');
 
 Route::get('/logout', [UsuarioController::class, 'logout']);
