@@ -1,13 +1,19 @@
 <!-- navbar -->
 <nav class="navbar top-navbar">
+
     <div class="container-fluid">
 
+        <!-- BLOQUE -->
         <div class="navbar-left">
+
             <div class="navbar-btn">
                 <a href="index.html"><img src="xor/up/assets/images/icon.svg" alt="Oculux Logo" class="img-fluid logo"></a>
                 <button type="button" class="btn-toggle-offcanvas"><i class="lnr lnr-menu fa fa-bars"></i></button>
             </div>
+
             <ul class="nav navbar-nav">
+
+                <!--
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                         <i class="icon-envelope"></i>
@@ -61,6 +67,9 @@
                         </li>
                     </ul>
                 </li>
+                -->
+
+                <!--
                 <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                         <i class="icon-bell"></i>
@@ -106,6 +115,9 @@
                         </li>
                     </ul>
                 </li>
+                -->
+
+                <!--
                 <li class="dropdown language-menu">
                     <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown">
                         <i class="fa fa-language"></i>
@@ -119,19 +131,25 @@
                         <a class="dropdown-item pt-2 pb-2" href="#"><img src="xor/up/assets/images/flag/france.svg " class="w20 mr-2 rounded-circle"> French</a>
                     </div>
                 </li>
+                -->
+
+                <!--
                 <li><a href="javascript:void(0);" class="megamenu_toggle icon-menu" title="Mega Menu">Mega</a></li>
-                <li class="p_social"><a href="page-social.html" class="social icon-menu" title="News">Social</a></li>
-                <li class="p_news"><a href="page-news.html" class="news icon-menu" title="News">News</a></li>
-                <li class="p_blog"><a href="page-blog.html" class="blog icon-menu" title="Blog">Blog</a></li>
+                -->
+
+                <li class="p_social"><a href="#" class="social icon-menu" title="News">Social</a></li>
+                <li class="p_news"><a href="#" class="news icon-menu" title="News">News</a></li>
+                <li class="p_blog"><a href="#" class="blog icon-menu" title="Blog">Blog</a></li>
             </ul>
+
         </div>
 
+        <!-- BLOQUE -->
         <div class="navbar-right">
             <div id="navbar-menu">
                 <ul class="nav navbar-nav">
                     <li><a href="javascript:void(0);" class="search_toggle icon-menu" title="Search Result"><i class="icon-magnifier"></i></a></li>
                     <li><a href="javascript:void(0);" class="right_toggle icon-menu" title="Right Menu"><i class="icon-bubbles"></i><span class="notification-dot bg-pink">2</span></a></li>
-
                     <li>
                         <a href="{{ url('/logout') }}" class="icon-menu">
                             <i class="icon-power">
@@ -145,5 +163,9 @@
         </div>
 
     </div>
-    <div class="progress-container"><div class="progress-bar" id="myBar"></div></div>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar">
+        </div>
+    </div>
 </nav>

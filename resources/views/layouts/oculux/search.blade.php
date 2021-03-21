@@ -1,3 +1,4 @@
+
 <div class="search_div">
     <div class="card">
         <div class="body">
@@ -12,7 +13,9 @@
             </form>
         </div>
     </div>
+
     <span>Search Result <small class="float-right text-muted">About 90 results (0.47 seconds)</small></span>
+
     <div class="table-responsive">
         <table class="table table-hover table-custom spacing5">
             <tbody>
