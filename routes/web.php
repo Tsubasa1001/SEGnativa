@@ -21,9 +21,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/oculux', function () {
-    return view('oculux');
-})->middleware(['auth'])->name('oculux');
+Route::get('/dashboard', function () {
+    return view('oculuxDashboard');
+})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
