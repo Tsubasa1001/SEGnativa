@@ -21,7 +21,7 @@ class UsuarioController extends Controller{
             $resultado = 'No hay registros.';
         }
 
-        return $resultado;
+        return view('cu.usuario.index', compact('resultado'));
     }
 
     /**

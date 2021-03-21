@@ -49,7 +49,9 @@
             @include('layouts.oculux.barraIzquierda')
 
             <div id="main-content">
-                @yield('contenido')
+                <div class="container-fluid">
+                    @yield('dinamico')
+                </div>
             </div>
 
         </div>
