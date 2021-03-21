@@ -15,13 +15,13 @@ class UsuarioController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $resultado = User::all();
+        $collection = User::all();
 
-        if ($resultado->isEmpty()){
-            $resultado = 'No hay registros.';
+        if ($collection->isEmpty()){
+            $collection = 'No hay registros.';
         }
 
-        return view('cu.usuario.index', compact('resultado'));
+        return view('cu.usuario.index', compact('collection'));
     }
 
     /**

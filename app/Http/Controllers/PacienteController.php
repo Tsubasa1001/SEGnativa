@@ -14,13 +14,13 @@ class PacienteController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $resultado = Paciente::all();
+        $collection = Paciente::all();
 
-        if ($resultado->isEmpty()){
-            $resultado = 'No hay registros.';
+        if ($collection->isEmpty()){
+            $collection = 'No hay registros.';
         }
 
-        return $resultado;
+        return $collection;
     }
 
     /**

@@ -16,13 +16,13 @@ class TrabajadorController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $resultado = Trabajador::all();
+        $collection = Trabajador::all();
 
-        if ($resultado->isEmpty()){
-            $resultado = 'No hay registros.';
+        if ($collection->isEmpty()){
+            $collection = 'No hay registros.';
         }
 
-        return $resultado;
+        return $collection;
     }
 
     /**

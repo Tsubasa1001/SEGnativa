@@ -19,6 +19,7 @@
             </div>
         </div>
     </div>
+
     <div class="row clearfix">
         <div class="col-lg-12">
             <div class="card">
@@ -41,6 +42,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    @foreach ($collection as $item)
+                                        <tr>
+                                            <td>
+                                                <img src="../assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35 rounded" data-original-title="Avatar Name">
+                                            </td>
+                                            <td>
+                                                <h6 class="mb-0">{{$item->name}}</h6>
+                                                <span>{{$item->email}}</span>
+                                            </td>
+                                            <td>
+                                                @if ($item->privilegio == '1')
+                                                    <span class="badge badge-danger">ROOT</span>
+                                                @elseif ($item->privilegio == '2')
+                                                    <span class="badge badge-default">Empleado</span>
+                                                @elseif ($item->privilegio == '3')
+                                                    <span class="badge badge-info">Cliente</span>
+                                                @endif
+                                            </td>
+                                            <td>{{$item->created_at}}</td>
+                                            <td>Team Lead</td>
+                                            <td>
+                                                @if ($item->privilegio != '1')
+                                                    <button type="button" class="btn btn-sm btn-default" title="Edit"><i class="fa fa-edit"></i></button>
+                                                    <button type="button" class="btn btn-sm btn-default js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
                                     <tr>
                                         <td class="width45">
                                             <div class="avtar-pic w35 bg-pink" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name"><span>MN</span></div>
@@ -56,6 +87,7 @@
 
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td>
                                             <img src="../assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35 rounded" data-original-title="Avatar Name">
@@ -72,6 +104,7 @@
                                             <button type="button" class="btn btn-sm btn-default js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td>
                                             <img src="../assets/images/xs/avatar4.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35 rounded" data-original-title="Avatar Name">
@@ -88,6 +121,7 @@
                                             <button type="button" class="btn btn-sm btn-default js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td>
                                             <img src="../assets/images/xs/avatar7.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35 rounded" data-original-title="Avatar Name">
@@ -104,6 +138,7 @@
                                             <button type="button" class="btn btn-sm btn-default js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
                                         </td>
                                     </tr>
+
                                     <tr>
                                         <td>
                                             <div class="avtar-pic w35 bg-blue" data-toggle="tooltip" data-placement="top" title="" data-original-title="Avatar Name"><span>MN</span></div>
@@ -120,6 +155,7 @@
                                             <button type="button" class="btn btn-sm btn-default js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
                                         </td>
                                     </tr>
+
                                 </tbody>
                             </table>
                         </div>
