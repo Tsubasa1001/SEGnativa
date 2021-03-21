@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Trabajador;
 use Illuminate\Http\Request;
 
-class TrabajadorController extends Controller
-{
+use function PHPUnit\Framework\isEmpty;
+
+class TrabajadorController extends Controller{
+    public $tabla = 'Trabajador';
+
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +17,11 @@ class TrabajadorController extends Controller
      */
     public function index(){
         $resultado = Trabajador::all();
+
+        if ($resultado->isEmpty()){
+            $resultado = 'No hay registros.';
+        }
+
         return $resultado;
     }
 
