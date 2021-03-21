@@ -35,3 +35,5 @@ Route::get('/Paciente/index', [PacienteController::class, 'index']);
 Route::get('/Trabajador/index', [TrabajadorController::class, 'index']);
 Route::get('/Estadistica/index', [EstadisticaController::class, 'index']);
 Route::get('/Reporte/index', [ReporteController::class, 'index']);
+
+Route::get('/logout', [UsuarioController::class, 'logout']);

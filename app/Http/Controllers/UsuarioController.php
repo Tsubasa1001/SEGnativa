@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-
-use function PHPUnit\Framework\isEmpty;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller{
     public $tabla = 'Usuario';
@@ -89,5 +88,10 @@ class UsuarioController extends Controller{
     public function destroy($id)
     {
         //
+    }
+
+    public function logout () {
+        Auth::logout();
+        return redirect('/');
     }
 }

@@ -131,10 +131,19 @@
                 <ul class="nav navbar-nav">
                     <li><a href="javascript:void(0);" class="search_toggle icon-menu" title="Search Result"><i class="icon-magnifier"></i></a></li>
                     <li><a href="javascript:void(0);" class="right_toggle icon-menu" title="Right Menu"><i class="icon-bubbles"></i><span class="notification-dot bg-pink">2</span></a></li>
-                    <li><a href="page-login.html" class="icon-menu"><i class="icon-power"></i></a></li>
+
+                    <li>
+                        <a href="{{ url('/logout') }}" class="icon-menu">
+                            <i class="icon-power">
+
+                            </i>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
         </div>
+
     </div>
     <div class="progress-container"><div class="progress-bar" id="myBar"></div></div>
 </nav>
