@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Paciente;
 use Illuminate\Http\Request;
 
-class PacienteController extends Controller
-{
+class PacienteController extends Controller{
+    public $tabla = 'Paciente';
+
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +15,11 @@ class PacienteController extends Controller
      */
     public function index(){
         $resultado = Paciente::all();
+
+        if ($resultado->isEmpty()){
+            $resultado = 'No hay registros.';
+        }
+
         return $resultado;
     }
 
