@@ -20,7 +20,7 @@ class PacienteController extends Controller{
             $collection = 'No hay registros.';
         }
 
-        return $collection;
+        return view('cu.paciente.index', compact('collection'));
     }
 
     /**

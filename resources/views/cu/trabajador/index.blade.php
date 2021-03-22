@@ -1,7 +1,7 @@
 @extends('layouts.oculux')
 
 @section('titulo')
-    <title>Usuario | Index</title>
+    <title>Trabajador | Index</title>
 @endsection
 
 @section('dinamico')
@@ -27,49 +27,46 @@
     <div class="row clearfix">
         <div class="col-lg-12">
             <div class="card">
+
                 <ul class="nav nav-tabs">
                     <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Users">Users</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addUser">Add User</a></li>
                 </ul>
+
                 <div class="tab-content mt-0">
+
                     <div class="tab-pane active show" id="Users">
                         <div class="table-responsive">
                             <table class="table table-hover table-custom spacing8">
                                 <thead>
                                     <tr>
                                         <th>pk</th>
-                                        <th class="w60">Name</th>
-                                        <th>Rol</th>
-                                        <th>PATRA</th>
+                                        <th class="w60">Nombre</th>
+                                        <th>Nacionalidad</th>
+                                        <th>Cargo/Ocupación</th>
+                                        <th>Genero</th>
                                         <th class="w100">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     @foreach ($collection as $item)
                                         <tr>
                                             <td>
                                                 {{$item->id}}
                                             </td>
                                             <td>
-                                                <h6 class="mb-0">{{$item->name}}</h6>
+                                                <h6 class="mb-0">{{$item->nombre}}</h6>
                                                 <span>{{$item->email}}</span>
                                             </td>
+                                            <td>{{$item->nacionalidad}}</td>
                                             <td>
-                                                @if ($item->privilegio == '1')
-                                                    <span class="badge badge-danger">ROOT</span>
-                                                @elseif ($item->privilegio == '2')
-                                                    <span class="badge badge-default">Empleado</span>
-                                                @elseif ($item->privilegio == '3')
-                                                    <span class="badge badge-info">Cliente</span>
+                                                @if ($item->especialidad == '1')
+                                                    {{$item->cargo}}
+                                                @else
+                                                    {{$item->ocupacion}}
                                                 @endif
                                             </td>
-                                            <td>
-                                                @if ($item->tipo_patra == 1)
-                                                    Paciente / {{$item->id_patra}}</td>
-                                                @else
-                                                    Trabajador / {{$item->id_patra}}</td>
-                                                @endif
+                                            <td>{{$item->genero}}</td>
                                             <td>
                                                 @if ($item->privilegio != '1')
                                                     <button type="button" class="btn btn-sm btn-default" title="Edit"><i class="fa fa-edit"></i></button>
@@ -78,11 +75,11 @@
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>
                     </div>
+
                     <div class="tab-pane" id="addUser">
                         <div class="body mt-2">
                             <div class="row clearfix">

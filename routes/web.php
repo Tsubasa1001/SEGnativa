@@ -29,11 +29,25 @@ require __DIR__.'/auth.php';
 
 /**SARIAH */
 /**GUSTAVO */
-/**EYVER */
+
+/**======================================================================== */
+/**                               E Y V E R                                 */
+/**======================================================================== */
+
+/**Usuario */
 Route::get('/Usuario/index', [UsuarioController::class, 'index'])->middleware(['auth'])->name('usuario_index');
+
+/**Paciente */
 Route::get('/Paciente/index', [PacienteController::class, 'index'])->middleware(['auth'])->name('paciente_index');
+
+/**Trabajador */
 Route::get('/Trabajador/index', [TrabajadorController::class, 'index'])->middleware(['auth'])->name('trabajador_index');
+
+/**Estadistica */
 Route::get('/Estadistica/index', [EstadisticaController::class, 'index'])->middleware(['auth'])->name('estadistica_index');
+
+/**Reporte */
 Route::get('/Reporte/index', [ReporteController::class, 'index'])->middleware(['auth'])->name('reporte_index');
 
+/**Sesion */
 Route::get('/logout', [UsuarioController::class, 'logout']);

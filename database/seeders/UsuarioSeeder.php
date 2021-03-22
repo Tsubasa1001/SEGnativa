@@ -19,14 +19,33 @@ class UsuarioSeeder extends Seeder{
      */
     public function run(){
         /**Usuarios para pruebas del equipo */
-        DB::table('users')->insert(['id' => 500,'name' => 'nair','email' => 'nair@gmail.com','privilegio' => 1,'email_verified_at' => now(),'password' => Hash::make('nairnair'),'remember_token' => Str::random(10),'created_at' => Carbon::parse(today())->format('Y-m-d'),'updated_at' => Carbon::parse(today())->format('Y-m-d')]);
-        DB::table('users')->insert(['id' => 501,'name' => 'sariah','email' => 'sariah@gmail.com','privilegio' => rand(2,3),'email_verified_at' => now(),'password' => Hash::make('sariahsariah'),'remember_token' => Str::random(10),'created_at' => Carbon::parse(today())->format('Y-m-d'),'updated_at' => Carbon::parse(today())->format('Y-m-d')]);
-        DB::table('users')->insert(['id' => 502,'name' => 'gustavo','email' => 'gustavo@gmail.com','privilegio' => rand(2,3),'email_verified_at' => now(),'password' => Hash::make('gustavogustavo'),'remember_token' => Str::random(10),'created_at' => Carbon::parse(today())->format('Y-m-d'),'updated_at' => Carbon::parse(today())->format('Y-m-d')]);
-        DB::table('users')->insert(['id' => 503,'name' => 'eyver','email' => 'eyver@gmail.com','privilegio' => rand(2,3),'email_verified_at' => now(),'password' => Hash::make('eyvereyver'),'remember_token' => Str::random(10),'created_at' => Carbon::parse(today())->format('Y-m-d'),'updated_at' => Carbon::parse(today())->format('Y-m-d')]);
+        DB::table('users')->insert(['id' => 500,'name' => 'nair','email' => 'nair@gmail.com','privilegio' => 1,'email_verified_at' => now(),'password' => Hash::make('nairnair'),'remember_token' => Str::random(10),
+            'tipo_patra' => 2,
+            'id_patra' => 500,
+            'created_at' => Carbon::parse(today())->format('Y-m-d'),
+            'updated_at' => Carbon::parse(today())->format('Y-m-d')]);
+
+        DB::table('users')->insert(['id' => 501,'name' => 'sariah','email' => 'sariah@gmail.com','privilegio' => rand(2,3),'email_verified_at' => now(),'password' => Hash::make('sariahsariah'),'remember_token' => Str::random(10),
+            'tipo_patra' => 2,
+            'id_patra' => 501,
+            'created_at' => Carbon::parse(today())->format('Y-m-d'),
+            'updated_at' => Carbon::parse(today())->format('Y-m-d')]);
+
+        DB::table('users')->insert(['id' => 502,'name' => 'gustavo','email' => 'gustavo@gmail.com','privilegio' => rand(2,3),'email_verified_at' => now(),'password' => Hash::make('gustavogustavo'),'remember_token' => Str::random(10),
+            'tipo_patra' => 2,
+            'id_patra' => 502,
+            'created_at' => Carbon::parse(today())->format('Y-m-d'),
+            'updated_at' => Carbon::parse(today())->format('Y-m-d')]);
+
+        DB::table('users')->insert(['id' => 503,'name' => 'eyver','email' => 'eyver@gmail.com','privilegio' => rand(2,3),'email_verified_at' => now(),'password' => Hash::make('eyvereyver'),'remember_token' => Str::random(10),
+            'tipo_patra' => 2,
+            'id_patra' => 503,
+            'created_at' => Carbon::parse(today())->format('Y-m-d'),
+            'updated_at' => Carbon::parse(today())->format('Y-m-d')]);
 
         /**Usuarios random */
-        for ($pk=1; $pk <=10; $pk++) {
-            User::factory()->create(['id' => $pk]);
-        }
+        //for ($pk=1; $pk <=10; $pk++) {
+        //    User::factory()->create(['id' => $pk]);
+        //}
     }
 }

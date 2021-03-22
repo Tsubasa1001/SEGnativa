@@ -13,7 +13,7 @@ class CreatePacientesTable extends Migration{
     public function up(){
         Schema::create('pacientes', function (Blueprint $table) {
             $table->id()->autoIncrement(false);
-            $table->string('codigo', 50);
+            $table->string('codigo', 50)->unique();
             $table->string('ci', 20)->unique();
             $table->string('nombre', 50);
             $table->string('nacionalidad', 50);

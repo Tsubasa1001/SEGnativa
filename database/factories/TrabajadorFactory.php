@@ -9,19 +9,13 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 class TrabajadorFactory extends Factory{
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Trabajador::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
+
     public function definition(){
+        $nombre = $this->faker->name;
+        $email = $this->faker->unique()->safeEmail;
+
         $generos = (['M', 'F']);
         $direccion = ([
             'C/ Muchiri #12',
@@ -37,13 +31,13 @@ class TrabajadorFactory extends Factory{
             'codigo' => '1',
 
             'ci' => $this->faker->unique()->numerify('#######'),
-            'nombre' => $this->faker->name,
+            'nombre' => $nombre,
             'nacionalidad' => 'Bolivia',
             'especialidad' => 1,
             'cargo' => 1,
             'ocupacion' => 1,
             'direccion' => $direccion[array_rand($direccion)],
-            'email' => $this->faker->unique()->safeEmail,
+            'email' => $email,
             'celular' => $this->faker->numerify('7#######'),
             'edad' => $this->faker->numerify('##'),
             'genero' => $generos[array_rand($generos)],

@@ -22,7 +22,7 @@ class TrabajadorController extends Controller{
             $collection = 'No hay registros.';
         }
 
-        return $collection;
+        return view('cu.trabajador.index', compact('collection'));
     }
 
     /**
