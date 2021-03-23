@@ -69,8 +69,22 @@
                                             <td>{{$item->genero}}</td>
                                             <td>
                                                 @if ($item->privilegio != '1')
-                                                    <button type="button" class="btn btn-sm btn-default" title="Edit"><i class="fa fa-edit"></i></button>
-                                                    <button type="button" class="btn btn-sm btn-default js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
+                                                    <button class="btn btn-sm btn-default"
+                                                    type="button" title="Edit">
+                                                        <i class="fa fa-edit">
+                                                        </i>
+                                                    </button>
+
+                                                    <form action="{{ url("Trabajador/destroy/{$item->id}")}}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-sm btn-default js-sweetalert"
+                                                        type="submit">
+                                                            <i class="fa fa-trash-o text-danger">
+                                                            </i>
+                                                        </button>
+                                                    </form>
                                                 @endif
                                             </td>
                                         </tr>
@@ -80,168 +94,76 @@
                         </div>
                     </div>
 
-                    <div class="tab-pane" id="addUser">
-                        <div class="body mt-2">
-                            <div class="row clearfix">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="First Name *">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Last Name">
-                                    </div>
-                                </div>
+<div class="tab-pane" id="addUser">
+    <div class="body mt-2">
+        <div class="row clearfix">
 
-                                <div class="col-lg-3 col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Email ID *">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Password">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Confirm Password">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Mobile No">
-                                    </div>
-                                </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="First Name *">
+                </div>
+            </div>
 
-                                <div class="col-lg-3 col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Employee ID *">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Username *">
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-12">
-                                    <div class="form-group">
-                                        <select class="form-control show-tick">
-                                            <option>Select Role Type</option>
-                                            <option>Super Admin</option>
-                                            <option>Admin</option>
-                                            <option>Employee</option>
-                                        </select>
-                                    </div>
-                                </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Last Name">
+                </div>
+            </div>
 
-                                <div class="col-12">
-                                    <h6>Module Permission</h6>
-                                    <div class="table-responsive">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Read</th>
-                                                    <th>Write</th>
-                                                    <th>Delete</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Super Admin</td>
-                                                    <td>
-                                                        <label class="fancy-checkbox">
-                                                            <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
-                                                            <span></span>
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <label class="fancy-checkbox">
-                                                            <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
-                                                            <span></span>
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <label class="fancy-checkbox">
-                                                            <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
-                                                            <span></span>
-                                                        </label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Admin</td>
-                                                    <td>
-                                                        <label class="fancy-checkbox">
-                                                            <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
-                                                            <span></span>
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <label class="fancy-checkbox">
-                                                            <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
-                                                            <span></span>
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <label class="fancy-checkbox">
-                                                            <input class="checkbox-tick" type="checkbox" name="checkbox">
-                                                            <span></span>
-                                                        </label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Employee</td>
-                                                    <td>
-                                                        <label class="fancy-checkbox">
-                                                            <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
-                                                            <span></span>
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <label class="fancy-checkbox">
-                                                            <input class="checkbox-tick" type="checkbox" name="checkbox">
-                                                            <span></span>
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <label class="fancy-checkbox">
-                                                            <input class="checkbox-tick" type="checkbox" name="checkbox">
-                                                            <span></span>
-                                                        </label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>HR Admin</td>
-                                                    <td>
-                                                        <label class="fancy-checkbox">
-                                                            <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
-                                                            <span></span>
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <label class="fancy-checkbox">
-                                                            <input class="checkbox-tick" type="checkbox" name="checkbox" checked="">
-                                                            <span></span>
-                                                        </label>
-                                                    </td>
-                                                    <td>
-                                                        <label class="fancy-checkbox">
-                                                            <input class="checkbox-tick" type="checkbox" name="checkbox">
-                                                            <span></span>
-                                                        </label>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <button type="button" class="btn btn-primary">Add</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Email ID *">
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Password">
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Confirm Password">
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Mobile No">
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Employee ID *">
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username *">
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="form-group">
+                    <select class="form-control show-tick">
+                        <option>Select Role Type</option>
+                        <option>Super Admin</option>
+                        <option>Admin</option>
+                        <option>Employee</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <button type="button" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>
                 </div>
             </div>
         </div>

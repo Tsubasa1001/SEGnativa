@@ -80,14 +80,9 @@ class TrabajadorController extends Controller{
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Trabajador  $trabajador
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Trabajador $trabajador)
-    {
-        //
+    public function destroy($trabajador){
+        $item = Trabajador::find($trabajador);
+        $item->delete();
+        return redirect(route('trabajador_index'));
     }
 }
