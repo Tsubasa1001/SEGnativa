@@ -1,3 +1,33 @@
+<?php
+
+    $file = "welcome";
+
+    if (!file_exists($file)) {
+
+        touch($file);
+
+
+        $fileO = fopen($file, "w+");
+        if($fileO){
+            fwrite($fileO, '0');
+            fclose($fileO);
+        }
+    }
+
+    $fileO = fopen($file, "r");
+    if($fileO){
+        $contador = fread($fileO, filesize($file));
+        $contador = $contador + 1;
+        fclose($fileO);
+    }
+
+    $fileO = fopen($file, "w+");
+    if($fileO){
+        fwrite($fileO, $contador);
+        fclose($fileO);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -5,6 +35,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
+        <h1>VISITANTE NRO :: {{$contador}}</h1>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
