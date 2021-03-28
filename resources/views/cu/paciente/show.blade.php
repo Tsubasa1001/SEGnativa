@@ -31,235 +31,158 @@
     }
 ?>
 
-    <div class="block-header">
-        <div class="row clearfix">
-            <div class="col-md-6 col-sm-12">
-                <h2>Paciente List</h2>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Oculux</a></li>
-                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Paciente List</li>
-                    <span class="badge badge-success">
-                        Contador de visitas :: {{$contador}}
-                    </span>
-                    </ol>
-                </nav>
-            </div>
-            <div class="col-md-6 col-sm-12 text-right hidden-xs">
-                <a href="javascript:void(0);" class="btn btn-sm btn-primary btn-round" title="">Add New</a>
-            </div>
+<div class="block-header">
+    <div class="row clearfix">
+        <div class="col-md-6 col-sm-12">
+            <h2>Paciente Show</h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Oculux</a></li>
+                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Paciente Show</li>
+                <span class="badge badge-success">
+                    Contador de visitas :: {{$contador}}
+                </span>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-6 col-sm-12 text-right hidden-xs">
+            <a href="javascript:void(0);" class="btn btn-sm btn-primary btn-round" title="">Add New</a>
         </div>
     </div>
+</div>
 
-    <div class="row clearfix">
-        <div class="col-lg-12">
-            <div class="card">
+<div class="row clearfix">
+    <div class="col-lg-12">
+        <div class="card">
 
-                <ul class="nav nav-tabs">
-                    <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Pacientes">Pacientes</a></li>
-                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addPaciente">Add Paciente</a></li>
-                </ul>
-
-                <div class="tab-content mt-0">
-
-                    <!-- SHOW -->
-                    <div class="tab-pane active show" id="Pacientes">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-custom spacing8">
-                                <thead>
-                                    <tr>
-                                        <th>pk</th>
-                                        <th class="w60">Nombre</th>
-                                        <th>Nacionalidad</th>
-                                        <th>Genero</th>
-                                        <th class="w100">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                        <tr>
-                                            <td>
-                                                {{$collection->id}}
-                                            </td>
-                                            <td>
-                                                <h6 class="mb-0">{{$collection->nombre}}</h6>
-                                                <span>{{$collection->email}}</span>
-                                            </td>
-                                            <td>{{$collection->nacionalidad}}</td>
-                                            <td>{{$collection->genero}}</td>
-                                            <td>
-
-                                                @if ($collection->privilegio != '1')
-                                                    <button class="btn btn-sm btn-default"
-                                                    type="button" title="Edit">
-                                                        <i class="fa fa-edit">
-                                                        </i>
-                                                    </button>
-
-                                                    <form action="{{ url("Paciente/destroy/{$collection->id}")}}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-sm btn-default js-sweetalert"
-                                                        type="submit">
-                                                            <i class="fa fa-trash-o text-danger">
-                                                            </i>
-                                                        </button>
-                                                    </form>
-                                                @endif
-
-                                            </td>
-                                        </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- CREATE -->
-                    <div class="tab-pane" id="addPaciente">
+            <!-- formulario__show_edit -->
+            <div class="col-xl-12 col-lg-12 col-md-7">
+                <div class="card">
+                    <div class="header">
+                        <h2>Information</h2>
+                        <!--mensaje_success-->
+                        @if(session()->has('success'))
+                            <br>
+                            <div class="tab-pane">
+                                <ul>
+                                    <li>
+                                        <span class="badge badge-success">
+                                        {{ session()->get('success') }}
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        @endif
+                        <!-- mensaje_error -->
                         @if ($errors->any())
+                            <br>
                             <div class="tab-pane">
                                 <ul>
                                     @foreach ($errors->all() as $error)
                                         <li>
-                                            <span class="badge badge-danger">{{ $error }}</span>
+                                            <span class="badge badge-danger">
+                                                {{ $error }}
+                                            </span>
                                         </li>
                                     @endforeach
                                 </ul>
                             </div>
                         @endif
+                        <ul class="header-dropdown dropdown">
+                            <li><a href="javascript:void(0);" class="full-screen"><i class="icon-frame"></i></a></li>
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:void(0);">Action</a></li>
+                                    <li><a href="javascript:void(0);">Another Action</a></li>
+                                    <li><a href="javascript:void(0);">Something else</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
 
-                        <div class="body mt-2">
-                            <form action="{{route('paciente_store')}}" method="post">
-                                @csrf
-                                <div class="row clearfix">
+                    <div class="body">
+                        <form action="{{route('paciente_update', $collection->id)}}" method="post">
+                            @method('PUT')
+                            @csrf
+                            <div class="row clearfix">
 
-                                    <!-- id -->
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="id">id</label>
-                                            <input type="text" class="form-control"
-                                            placeholder="1" name='id'
-                                            value="{{ old('id') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- codigo -->
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="codigo">codigo</label>
-                                            <input type="text" class="form-control"
-                                            placeholder="NTRA001" name='codigo'
-                                            value="{{ old('codigo') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- ci -->
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="ci">ci</label>
-                                            <input type="text" class="form-control"
-                                            placeholder="95959595" name='ci'
-                                            value="{{ old('ci') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- nacionalidad -->
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="nacionalidad">nacionalidad</label>
-                                            <input type="text" class="form-control"
-                                            placeholder="Bolivia" name='nacionalidad'
-                                            value="{{ old('nacionalidad') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- nombre -->
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="nombre">nombre</label>
-                                            <input type="text" class="form-control"
-                                            placeholder="Bon Jovi" name='nombre'
-                                            value="{{ old('nombre') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- especialidad -->
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="especialidad">especialidad</label>
-                                            <input type="text" class="form-control"
-                                            placeholder="1" name='especialidad'
-                                            value="{{ old('especialidad') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- direccion -->
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="direccion">direccion</label>
-                                            <input type="text" class="form-control"
-                                            placeholder="C/ Taperas #44" name='direccion'
-                                            value="{{ old('direccion') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- email -->
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="email">email</label>
-                                            <input type="text" class="form-control"
-                                            placeholder="test.01@gmail.com" name='email' type='email'
-                                            value="{{ old('email') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- celular -->
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="celular">celular</label>
-                                            <input type="text" class="form-control"
-                                            placeholder="65258545" name='celular' type='number'
-                                            value="{{ old('celular') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- edad -->
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="edad">edad</label>
-                                            <input type="text" class="form-control"
-                                            placeholder="18" name='edad' type='number'
-                                            value="{{ old('edad') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- genero -->
-                                    <div class="col-lg-3 col-md-4 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="genero">genero</label>
-                                            <select class="form-control show-tick"
-                                            name='genero' type='text'>
-                                                <option>F</option>
-                                                <option>M</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-primary">Add</button>
-                                        <button type="reset" class="btn btn-secondary" data-dismiss="modal">Reset</button>
+                                <!--name-->
+                                <div class="col-lg-5 col-md-12">
+                                    <div class="form-group">
+                                        <label for="name">name</label>
+                                        <input type="text" name="name" class="form-control"
+                                        value="{{$collection->name}}" disabled>
                                     </div>
                                 </div>
-                            </form>
-                        </div>
+
+                                <!--email-->
+                                <div class="col-lg-5 col-md-12">
+                                    <div class="form-group">
+                                        <label for="email">email</label>
+                                        <input type="text" name="email" class="form-control"
+                                        value="{{$collection->email}}">
+                                    </div>
+                                </div>
+
+                                <!--privilegio-->
+                                <div class="col-lg-2 col-md-12">
+                                    <div class="form-group">
+                                        <label for="privilegio">privilegio</label>
+                                        <select class="form-control show-tick"
+                                        name='privilegio' type='text'>
+                                            <option value='{{$collection->privilegio}}'>
+                                                @if ($collection->privilegio == '1')
+                                                    root
+                                                @endif
+                                                @if ($collection->privilegio == '2')
+                                                    Cliente
+                                                @endif
+                                                @if ($collection->privilegio == '3')
+                                                    Trabajador
+                                                @endif
+                                            </option>
+                                            <option value='1'>root</option>
+                                            <option value='2'>Cliente</option>
+                                            <option value='3'>Trabajador</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!--password-->
+                                <div class="col-lg-5 col-md-12">
+                                    <div class="form-group">
+                                        <label for="password">password</label>
+                                        <input type="password" name="password" class="form-control">
+                                    </div>
+                                </div>
+
+                                <!--password_confirmation-->
+                                <div class="col-lg-5 col-md-12">
+                                    <div class="form-group">
+                                        <label for="password_confirmation">password_confirmation</label>
+                                        <input type="password" name="password_confirmation" class="form-control">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button type="submit" class="btn btn-round btn-primary">Update</button> &nbsp;&nbsp;
+                            <button type="reset" class="btn btn-round btn-default">
+                                <a href="{{ route('usuario_show', $collection->id) }}" title="show">
+                                    <i class="fa fa-refresh">
+                                        Reset
+                                    </i>
+                                </a>
+                            </button>
+                        </form>
                     </div>
 
                 </div>
             </div>
+
         </div>
     </div>
+</div>
 
 @endsection
