@@ -1,3 +1,33 @@
+<?php
+
+    $file = "welcome";
+
+    if (!file_exists($file)) {
+
+        touch($file);
+
+
+        $fileO = fopen($file, "w+");
+        if($fileO){
+            fwrite($fileO, '0');
+            fclose($fileO);
+        }
+    }
+
+    $fileO = fopen($file, "r");
+    if($fileO){
+        $contador = fread($fileO, filesize($file));
+        $contador = $contador + 1;
+        fclose($fileO);
+    }
+
+    $fileO = fopen($file, "w+");
+    if($fileO){
+        fwrite($fileO, $contador);
+        fclose($fileO);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -26,9 +56,14 @@
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                        <div class="alert alert-success" role="alert">
+                            Contador de visitas :: {{$contador}}
+                        </div>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">
+                            Log in
+                        </a>
+                        
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
                         @endif
@@ -44,7 +79,6 @@
                         </g>
                     </svg>
                 </div>
-
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="p-6">
