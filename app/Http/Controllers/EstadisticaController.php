@@ -4,16 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class EstadisticaController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+class EstadisticaController extends Controller{
+
+    public function index(){
+        $collection = [];
+        return view('cu.estadistica.index', compact('collection'));
     }
 
     /**

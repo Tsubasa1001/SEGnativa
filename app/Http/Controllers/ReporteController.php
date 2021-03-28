@@ -4,16 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ReporteController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+class ReporteController extends Controller{
+
+    public function index(){
+        $collection = [];
+        return view('cu.reporte.index', compact('collection'));
     }
 
     /**

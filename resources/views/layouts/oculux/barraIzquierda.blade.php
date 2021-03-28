@@ -35,6 +35,8 @@
                         <li><a href="{{route("usuario_index")}}">INDEX USUARIO</a></li>
                         <li><a href="{{route("paciente_index")}}">INDEX PACIENTE</a></li>
                         <li><a href="{{route("trabajador_index")}}">INDEX TRABAJADOR</a></li>
+                        <li><a href="{{route("estadistica_index")}}">ESTADISTICA</a></li>
+                        <li><a href="{{route("reporte_index")}}">REPORTE</a></li>
                     </ul>
                 </li>
             </ul>
