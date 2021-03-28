@@ -65,6 +65,12 @@
 
                     <!-- INDEX -->
                     <div class="tab-pane active show" id="Pacientes">
+                        @if ($collection == 'No hay registros.')
+                            <br>
+                            <span class="badge badge-default">
+                                <h3>'No hay registros.'</h3>
+                            </span>
+                        @else
                         <div class="table-responsive">
                             <table class="table table-hover table-custom spacing8">
                                 <thead>
@@ -115,6 +121,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        @endif
                     </div>
 
                     <!-- CREATE -->

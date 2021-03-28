@@ -15,7 +15,7 @@ class PacienteController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $collection = Paciente::all();
+        $collection = Paciente::all()->sortBy('id');
 
         if ($collection->isEmpty()){
             $collection = 'No hay registros.';
@@ -44,6 +44,7 @@ class PacienteController extends Controller{
         ]);
 
         $paciente = new Paciente;
+
         $paciente->id = $request->get('id');
         $paciente->codigo = $request->get('codigo');
         $paciente->ci = $request->get('ci');
@@ -68,32 +69,23 @@ class PacienteController extends Controller{
      * @param  \App\Models\Paciente  $paciente
      * @return \Illuminate\Http\Response
      */
-    public function show(Paciente $paciente)
-    {
-        //
+    public function show($paciente){
+        $collection = Paciente::find($paciente);
+        return view('cu.paciente.show', compact('collection'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Paciente  $paciente
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Paciente $paciente)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Paciente  $paciente
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Paciente $paciente)
-    {
-        //
+    public function update(Request $request, Paciente $paciente){
+
+
+
+
+
+        return redirect(route('paciente_index'));
     }
 
     public function destroy($paciente){

@@ -65,62 +65,69 @@
 
                     <!-- INDEX -->
                     <div class="tab-pane active show" id="Trabajadors">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-custom spacing8">
-                                <thead>
-                                    <tr>
-                                        <th>pk</th>
-                                        <th class="w60">Nombre</th>
-                                        <th>Nacionalidad</th>
-                                        <th>Cargo/Ocupación</th>
-                                        <th>Genero</th>
-                                        <th class="w100">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($collection as $item)
+                        @if ($collection == 'No hay registros.')
+                            <br>
+                            <span class="badge badge-default">
+                                <h3>'No hay registros.'</h3>
+                            </span>
+                        @else
+                            <div class="table-responsive">
+                                <table class="table table-hover table-custom spacing8">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                {{$item->id}}
-                                            </td>
-                                            <td>
-                                                <h6 class="mb-0">{{$item->nombre}}</h6>
-                                                <span>{{$item->email}}</span>
-                                            </td>
-                                            <td>{{$item->nacionalidad}}</td>
-                                            <td>
-                                                @if ($item->especialidad == '1')
-                                                    {{$item->cargo}}
-                                                @else
-                                                    {{$item->ocupacion}}
-                                                @endif
-                                            </td>
-                                            <td>{{$item->genero}}</td>
-                                            <td>
-                                                @if ($item->privilegio != '1')
-                                                    <button class="btn btn-sm btn-default"
-                                                    type="button" title="Edit">
-                                                        <i class="fa fa-edit">
-                                                        </i>
-                                                    </button>
-
-                                                    <form action="{{ url("Trabajador/destroy/{$item->id}")}}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-sm btn-default js-sweetalert"
-                                                        type="submit">
-                                                            <i class="fa fa-trash-o text-danger">
+                                            <th>pk</th>
+                                            <th class="w60">Nombre</th>
+                                            <th>Nacionalidad</th>
+                                            <th>Cargo/Ocupación</th>
+                                            <th>Genero</th>
+                                            <th class="w100">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($collection as $item)
+                                            <tr>
+                                                <td>
+                                                    {{$item->id}}
+                                                </td>
+                                                <td>
+                                                    <h6 class="mb-0">{{$item->nombre}}</h6>
+                                                    <span>{{$item->email}}</span>
+                                                </td>
+                                                <td>{{$item->nacionalidad}}</td>
+                                                <td>
+                                                    @if ($item->especialidad == '1')
+                                                        {{$item->cargo}}
+                                                    @else
+                                                        {{$item->ocupacion}}
+                                                    @endif
+                                                </td>
+                                                <td>{{$item->genero}}</td>
+                                                <td>
+                                                    @if ($item->privilegio != '1')
+                                                        <button class="btn btn-sm btn-default"
+                                                        type="button" title="Edit">
+                                                            <i class="fa fa-edit">
                                                             </i>
                                                         </button>
-                                                    </form>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+
+                                                        <form action="{{ url("Trabajador/destroy/{$item->id}")}}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn btn-sm btn-default js-sweetalert"
+                                                            type="submit">
+                                                                <i class="fa fa-trash-o text-danger">
+                                                                </i>
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
                     </div>
 
                     <!-- CREATE -->

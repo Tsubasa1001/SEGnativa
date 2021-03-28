@@ -18,7 +18,7 @@ class TrabajadorController extends Controller{
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $collection = Trabajador::all();
+        $collection = Trabajador::all()->sortBy('id');
 
         if ($collection->isEmpty()){
             $collection = 'No hay registros.';

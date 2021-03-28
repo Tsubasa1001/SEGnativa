@@ -55,124 +55,166 @@
     <div class="row clearfix">
         <div class="col-lg-12">
             <div class="card">
+
                 <ul class="nav nav-tabs">
                     <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Users">Users</a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addUser">Add User</a></li>
                 </ul>
+
                 <div class="tab-content mt-0">
 
+                    <!-- INDEX -->
                     <div class="tab-pane active show" id="Users">
-                        <div class="table-responsive">
-                            <table class="table table-hover table-custom spacing8">
-                                <thead>
-                                    <tr>
-                                        <th>pk</th>
-                                        <th class="w60">Name</th>
-                                        <th>Rol</th>
-                                        <th>PATRA</th>
-                                        <th class="w100">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    @foreach ($collection as $item)
+                        @if ($collection == 'No hay registros.')
+                            <br>
+                            <span class="badge badge-default">
+                                <h3>'No hay registros.'</h3>
+                            </span>
+                        @else
+                            <div class="table-responsive">
+                                <table class="table table-hover table-custom spacing8">
+                                    <thead>
                                         <tr>
-                                            <td>
-                                                {{$item->id}}
-                                            </td>
-                                            <td>
-                                                <h6 class="mb-0">{{$item->name}}</h6>
-                                                <span>{{$item->email}}</span>
-                                            </td>
-                                            <td>
-                                                @if ($item->privilegio == '1')
-                                                    <span class="badge badge-danger">ROOT</span>
-                                                @elseif ($item->privilegio == '2')
-                                                    <span class="badge badge-default">Empleado</span>
-                                                @elseif ($item->privilegio == '3')
-                                                    <span class="badge badge-info">Cliente</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($item->tipo_patra == 1)
-                                                    Paciente / {{$item->id_patra}}</td>
-                                                @else
-                                                    Trabajador / {{$item->id_patra}}</td>
-                                                @endif
-                                            <td>
-                                                @if ($item->privilegio != '1')
-                                                    <button type="button" class="btn btn-sm btn-default" title="Edit"><i class="fa fa-edit"></i></button>
-                                                    <button type="button" class="btn btn-sm btn-default js-sweetalert" title="Delete" data-type="confirm"><i class="fa fa-trash-o text-danger"></i></button>
-                                                @endif
-                                            </td>
+                                            <th>pk</th>
+                                            <th class="w60">Name</th>
+                                            <th>Rol</th>
+                                            <th>PATRA</th>
+                                            <th class="w100">Action</th>
                                         </tr>
-                                    @endforeach
+                                    </thead>
+                                    <tbody>
 
-                                </tbody>
-                            </table>
-                        </div>
+                                        @foreach ($collection as $item)
+                                            <tr>
+                                                <td>
+                                                    {{$item->id}}
+                                                </td>
+                                                <td>
+                                                    <h6 class="mb-0">{{$item->name}}</h6>
+                                                    <span>{{$item->email}}</span>
+                                                </td>
+                                                <td>
+                                                    @if ($item->privilegio == '1')
+                                                        <span class="badge badge-danger">ROOT</span>
+                                                    @elseif ($item->privilegio == '2')
+                                                        <span class="badge badge-default">Cliente</span>
+                                                    @elseif ($item->privilegio == '3')
+                                                        <span class="badge badge-info">Trabajador</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($item->tipo_patra == 1)
+                                                        Paciente / {{$item->id_patra}}</td>
+                                                    @else
+                                                        Trabajador / {{$item->id_patra}}</td>
+                                                    @endif
+                                                <td>
+                                                    @if ($item->privilegio != '1')
+                                                        <button type="button" class="btn btn-sm btn-default" title="Edit"><i class="fa fa-edit"></i></button>
+
+                                                        <form action="{{ url("Usuario/destroy/{$item->id}")}}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn btn-sm btn-default js-sweetalert"
+                                                            type="submit">
+                                                                <i class="fa fa-trash-o text-danger">
+                                                                </i>
+                                                            </button>
+                                                        </form>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        @endif
                     </div>
 
-<!-- INDEX -->
-<div class="tab-pane" id="addUser">
-    <div class="body mt-2">
-        <div class="row clearfix">
+                    <!-- CREATE -->
+                    <div class="tab-pane" id="addUser">
+                        @if ($errors->any())
+                            <div class="tab-pane">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>
+                                            <span class="badge badge-danger">{{ $error }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="First Name *">
-                </div>
-            </div>
+                        <div class="body mt-2">
+                            <form action="{{route('usuario_store')}}" method="post">
+                                @csrf
+                                <div class="row clearfix">
 
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Last Name">
-                </div>
-            </div>
+                                    <!-- id -->
+                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="id">id</label>
+                                            <input type="text" class="form-control"
+                                            placeholder="1" name='id'
+                                            value="{{ old('id') }}">
+                                        </div>
+                                    </div>
 
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email ID *">
-                </div>
-            </div>
+                                    <!-- nombre -->
+                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="nombre">nombre</label>
+                                            <input type="text" class="form-control"
+                                            placeholder="Bon Jovi" name='nombre'
+                                            value="{{ old('nombre') }}">
+                                        </div>
+                                    </div>
 
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Password">
-                </div>
-            </div>
+                                    <!-- privilegio -->
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="privilegio">privilegio</label>
+                                            <select class="form-control show-tick"
+                                            name='privilegio' type='text'>
+                                                <option value='1'>root</option>
+                                                <option value='2'>Cliente</option>
+                                                <option value='3'>Trabajador</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Confirm Password">
-                </div>
-            </div>
+                                    <!-- email -->
+                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email">email</label>
+                                            <input type="text" class="form-control"
+                                            placeholder="test.01@gmail.com" name='email' type='email'
+                                            value="{{ old('email') }}">
+                                        </div>
+                                    </div>
 
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Mobile No">
-                </div>
-            </div>
+                                    <!-- tipo_patra -->
+                                    <div class="col-lg-3 col-md-4 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="tipo_patra">tipo_patra</label>
+                                            <select class="form-control show-tick"
+                                            name='tipo_patra' type='text'>
+                                                <option value='1'>Paciente</option>
+                                                <option value='2'>Trabajador</option>
+                                            </select>
+                                        </div>
+                                    </div>
 
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Employee ID *">
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-sm-12">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Username *">
-                </div>
-            </div>
-
-            <div class="col-12">
-                <button type="button" class="btn btn-primary">Add</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
-            </div>
-        </div>
-    </div>
-</div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">Add</button>
+                                        <button type="reset" class="btn btn-secondary" data-dismiss="modal">Reset</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
                 </div>
             </div>
