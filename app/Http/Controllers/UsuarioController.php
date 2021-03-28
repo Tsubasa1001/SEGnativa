@@ -111,7 +111,39 @@ class UsuarioController extends Controller{
     }
 
     public function edit($id){}
-    public function update(Request $request, $id){}
+    public function update(Request $request, $id){
+        $item = User::find($id);
+
+        if ($request->get('email') == $item['email']){
+            $request->validate([
+                'password' => 'nullable|string|confirmed|min:8',
+                'privilegio' => 'nullable|numeric',
+            ]);
+        }else{
+            $request->validate([
+                'email' => 'nullable|email|max:255|unique:users',
+                'password' => 'nullable|string|confirmed|min:8',
+                'privilegio' => 'nullable|numeric',
+            ]);
+        }
+
+        $email = $request->get('email');
+        $password = $request->get('password');
+        $privilegio = $request->get('privilegio');
+
+        if ($email != null) {
+            $item->update(['email' => $email]);
+        }
+        if ($password != null) {
+            $item->update(['password' => Hash::make($password)]);
+        }
+        if ($privilegio != null) {
+            $item->update(['privilegio' => $privilegio]);
+        }
+
+        return redirect()->route('usuario_show', $id)
+            ->with('success', 'Project updated successfully');
+    }
 
     public function destroy($usuario){
         /**busco el usuario a eliminar */
