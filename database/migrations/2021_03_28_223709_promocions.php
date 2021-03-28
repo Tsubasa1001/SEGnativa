@@ -19,7 +19,7 @@ class Promocions extends Migration
             $table->integer('cantidad', false)->nullable();
             $table->float('precio', 4, 2);
             $table->date('created_at');
-            $table->date('updated_at');
+            $table->date('updated_at'); 
         });
     }
 
