@@ -153,7 +153,7 @@
                     <li>
                         <a href="{{ url('/logout') }}" class="icon-menu">
                             <i class="icon-power">
-
+                                          
                             </i>
                         </a>
                     </li>
