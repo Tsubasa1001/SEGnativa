@@ -14,11 +14,6 @@ use Illuminate\Support\Facades\Hash;
 class UsuarioController extends Controller{
     public $tabla = 'Usuario';
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(){
         $collection = User::all()->sortBy('id');
 
@@ -29,15 +24,7 @@ class UsuarioController extends Controller{
         return view('cu.usuario.index', compact('collection'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function create(){}
 
     public function store(Request $request){
         /**validar las entradas */
@@ -118,7 +105,11 @@ class UsuarioController extends Controller{
         return redirect(route('usuario_index'));
     }
 
-    public function show($id){}
+    public function show($usuario){
+        $collection = User::find($usuario);
+        return view('cu.usuario.show', compact('collection'));
+    }
+
     public function edit($id){}
     public function update(Request $request, $id){}
 
@@ -137,7 +128,7 @@ class UsuarioController extends Controller{
         /**si corresponde, elimino al [paciente/trabajador] */
         $tmpP = Paciente::find($id_patra);
         $tmpT = Trabajador::find($id_patra);
-        
+
         if (
             ($tipo_patra == 1) &&
             (Paciente::find($id_patra) != null)

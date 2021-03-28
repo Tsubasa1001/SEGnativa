@@ -27,15 +27,7 @@ class TrabajadorController extends Controller{
         return view('cu.trabajador.index', compact('collection'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+    public function create(){}
 
     public function store(Request $request){
         $gandalf = $request->validate([
@@ -75,39 +67,13 @@ class TrabajadorController extends Controller{
         return redirect(route('trabajador_index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Trabajador  $trabajador
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Trabajador $trabajador)
-    {
-        //
+    public function show($trabajador){
+        $collection = Trabajador::find($trabajador);
+        return view('cu.trabajador.show', compact('collection'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Trabajador  $trabajador
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Trabajador $trabajador)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Trabajador  $trabajador
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Trabajador $trabajador)
-    {
-        //
-    }
+    public function edit(Trabajador $trabajador){}
+    public function update(Request $request, Trabajador $trabajador){}
 
     public function destroy($trabajador){
         $item = Trabajador::find($trabajador);

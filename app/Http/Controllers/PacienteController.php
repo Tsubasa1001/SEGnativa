@@ -63,28 +63,14 @@ class PacienteController extends Controller{
         return redirect(route('paciente_index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Paciente  $paciente
-     * @return \Illuminate\Http\Response
-     */
     public function show($paciente){
         $collection = Paciente::find($paciente);
         return view('cu.paciente.show', compact('collection'));
     }
 
-    public function edit(Paciente $paciente)
-    {
-        //
-    }
+    public function edit(Paciente $paciente){}
 
     public function update(Request $request, Paciente $paciente){
-
-
-
-
-
         return redirect(route('paciente_index'));
     }
 
