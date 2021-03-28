@@ -20,7 +20,7 @@
                             </div>
                         </li>
                         <li class="right">
-                            <img src="http://segnativa.test/xor/up/assets/images/xs/avatar1.jpg" class="rounded" alt="">
+                            <img src="https://www.tecnoweb.org.bo/inf513/grupo06sc/SEGnativa/public/xor/up/assets/images/xs/avatar1.jpg" class="rounded" alt="">
                             <div class="chat-info">
                                 <span class="message">Hi, Alizee<br> It is almost completed. I will send you an email later today.</span>
                             </div>
@@ -32,7 +32,7 @@
                             </div>
                         </li>
                         <li class="right">
-                            <img src="http://segnativa.test/xor/up/assets/images/xs/avatar1.jpg" class="rounded" alt="">
+                            <img src="https://www.tecnoweb.org.bo/inf513/grupo06sc/SEGnativa/public/xor/up/assets/images/xs/avatar1.jpg" class="rounded" alt="">
                             <div class="chat-info">
                                 <span class="message">Sure we'will have a blast today.</span>
                             </div>
@@ -66,7 +66,7 @@
                     <li class="online">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="http://segnativa.test/xor/up/assets/images/xs/avatar3.jpg" alt="">
+                                <img class="media-object " src="https://www.tecnoweb.org.bo/inf513/grupo06sc/SEGnativa/public/xor/up/assets/images/xs/avatar3.jpg" alt="">
                                 <div class="media-body">
                                     <span class="name">Marshall Nichols</span>
                                     <span class="message">online</span>
@@ -114,7 +114,7 @@
                     <li class="online">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="http://segnativa.test/xor/up/assets/images/xs/avatar5.jpg" alt="">
+                                <img class="media-object " src="https://www.tecnoweb.org.bo/inf513/grupo06sc/SEGnativa/public/xor/up/assets/images/xs/avatar5.jpg" alt="">
                                 <div class="media-body">
                                     <span class="name">Debra Stewart</span>
                                     <span class="message">online</span>
@@ -126,7 +126,7 @@
                     <li class="offline">
                         <a href="javascript:void(0);">
                             <div class="media">
-                                <img class="media-object " src="http://segnativa.test/xor/up/assets/images/xs/avatar2.jpg" alt="">
+                                <img class="media-object " src="https://www.tecnoweb.org.bo/inf513/grupo06sc/SEGnativa/public/xor/up/assets/images/xs/avatar2.jpg" alt="">
                                 <div class="media-body">
                                     <span class="name">Lisa Garett</span>
                                     <span class="message">offline since Jan 18</span>

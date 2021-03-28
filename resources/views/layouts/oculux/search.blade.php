@@ -39,7 +39,7 @@
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <img src="http://segnativa.test/xor/up/assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35 rounded" data-original-title="Avatar Name">
+                            <img src="https://www.tecnoweb.org.bo/inf513/grupo06sc/SEGnativa/public/xor/up/assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35 rounded" data-original-title="Avatar Name">
                             <div class="ml-3">
                                 <a href="javascript:void(0);" title="">Zoe Baker</a>
                                 <p class="mb-0">zoe.baker@example.com</p>
@@ -81,7 +81,7 @@
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <img src="http://segnativa.test/xor/up/assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35 rounded" data-original-title="Avatar Name">
+                            <img src="https://www.tecnoweb.org.bo/inf513/grupo06sc/SEGnativa/public/xor/up/assets/images/xs/avatar5.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35 rounded" data-original-title="Avatar Name">
                             <div class="ml-3">
                                 <a href="javascript:void(0);" title="">Brandon Smith</a>
                                 <p class="mb-0">Maria.gill@example.com</p>
@@ -95,7 +95,7 @@
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <img src="http://segnativa.test/xor/up/assets/images/xs/avatar6.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35 rounded" data-original-title="Avatar Name">
+                            <img src="https://www.tecnoweb.org.bo/inf513/grupo06sc/SEGnativa/public/xor/up/assets/images/xs/avatar6.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35 rounded" data-original-title="Avatar Name">
                             <div class="ml-3">
                                 <a href="javascript:void(0);" title="">Kevin Baker</a>
                                 <p class="mb-0">kevin.baker@example.com</p>
@@ -109,7 +109,7 @@
                     </td>
                     <td>
                         <div class="d-flex align-items-center">
-                            <img src="http://segnativa.test/xor/up/assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35 rounded" data-original-title="Avatar Name">
+                            <img src="https://www.tecnoweb.org.bo/inf513/grupo06sc/SEGnativa/public/xor/up/assets/images/xs/avatar2.jpg" data-toggle="tooltip" data-placement="top" title="" alt="Avatar" class="w35 h35 rounded" data-original-title="Avatar Name">
                             <div class="ml-3">
                                 <a href="javascript:void(0);" title="">Zoe Baker</a>
                                 <p class="mb-0">zoe.baker@example.com</p>
