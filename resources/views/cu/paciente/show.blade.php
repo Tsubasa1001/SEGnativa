@@ -108,12 +108,78 @@
                             @csrf
                             <div class="row clearfix">
 
-                                <!--name-->
-                                <div class="col-lg-5 col-md-12">
+                                <!--nombre-->
+                                <div class="col-lg-4 col-md-12">
                                     <div class="form-group">
-                                        <label for="name">name</label>
-                                        <input type="text" name="name" class="form-control"
-                                        value="{{$collection->name}}" disabled>
+                                        <label for="nombre">nombre</label>
+                                        <input type="text" name="nombre" class="form-control"
+                                        value="{{$collection->nombre}}" disabled>
+                                    </div>
+                                </div>
+
+                                <!--codigo-->
+                                <div class="col-lg-2 col-md-12">
+                                    <div class="form-group">
+                                        <label for="codigo">codigo</label>
+                                        <input type="text" name="codigo" class="form-control"
+                                        value="{{$collection->codigo}}" disabled>
+                                    </div>
+                                </div>
+
+                                <!--ci-->
+                                <div class="col-lg-2 col-md-12">
+                                    <div class="form-group">
+                                        <label for="ci">ci</label>
+                                        <input type="text" name="ci" class="form-control"
+                                        value="{{$collection->ci}}">
+                                    </div>
+                                </div>
+
+                                <!--nacionalidad-->
+                                <div class="col-lg-3 col-md-12">
+                                    <div class="form-group">
+                                        <label for="nacionalidad">nacionalidad</label>
+                                        <select class="form-control show-tick"
+                                        name='nacionalidad' type='text'>
+                                            <option value='{{$collection->nacionalidad}}'>{{$collection->nacionalidad}}</option>
+                                            <option value="Armenia">Armenia</option>
+                                            <option value="Aruba">Aruba</option>
+                                            <option value="Australia">Australia</option>
+                                            <option value="Austria">Austria</option>
+                                            <option value="Azerbaijan">Azerbaijan</option>
+                                            <option value="Bahamas">Bahamas</option>
+                                            <option value="Bahrain">Bahrain</option>
+                                            <option value="Bangladesh">Bangladesh</option>
+                                            <option value="Barbados">Barbados</option>
+                                            <option value="Belarus">Belarus</option>
+                                            <option value="Belgium">Belgium</option>
+                                            <option value="Belize">Belize</option>
+                                            <option value="Benin">Benin</option>
+                                            <option value="Bermuda">Bermuda</option>
+                                            <option value="Bhutan">Bhutan</option>
+                                            <option value="Bolivia">Bolivia</option>
+                                            <option value="Bonaire">Bonaire</option>
+                                            <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                            <option value="Botswana">Botswana</option>
+                                            <option value="Bouvet Island">Bouvet Island</option>
+                                            <option value="Brazil">Brazil</option>
+                                            <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                                            <option value="Brunei Darussalam">Brunei Darussalam</option>
+                                            <option value="Bulgaria">Bulgaria</option>
+                                            <option value="Burkina Faso">Burkina Faso</option>
+                                            <option value="Burundi">Burundi</option>
+                                            <option value="Cambodia">Cambodia</option>
+                                            <option value="Cameroon">Cameroon</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!--direccion-->
+                                <div class="col-lg-2 col-md-12">
+                                    <div class="form-group">
+                                        <label for="direccion">direccion</label>
+                                        <input type="text" name="direccion" class="form-control"
+                                        value="{{$collection->direccion}}">
                                     </div>
                                 </div>
 
@@ -126,50 +192,41 @@
                                     </div>
                                 </div>
 
-                                <!--privilegio-->
+                                <!--celular-->
                                 <div class="col-lg-2 col-md-12">
                                     <div class="form-group">
-                                        <label for="privilegio">privilegio</label>
+                                        <label for="celular">celular</label>
+                                        <input type="text" name="celular" class="form-control"
+                                        value="{{$collection->celular}}">
+                                    </div>
+                                </div>
+
+                                <!--genero-->
+                                <div class="col-lg-2 col-md-12">
+                                    <div class="form-group">
+                                        <label for="genero">genero</label>
                                         <select class="form-control show-tick"
-                                        name='privilegio' type='text'>
-                                            <option value='{{$collection->privilegio}}'>
-                                                @if ($collection->privilegio == '1')
-                                                    root
-                                                @endif
-                                                @if ($collection->privilegio == '2')
-                                                    Cliente
-                                                @endif
-                                                @if ($collection->privilegio == '3')
-                                                    Trabajador
-                                                @endif
-                                            </option>
-                                            <option value='1'>root</option>
-                                            <option value='2'>Cliente</option>
-                                            <option value='3'>Trabajador</option>
+                                        name='genero' type='text'>
+                                            <option value='{{$collection->genero}}'>{{$collection->genero}}</option>
+                                            <option value='F'>F</option>
+                                            <option value='M'>M</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <!--password-->
-                                <div class="col-lg-5 col-md-12">
+                                <!--edad-->
+                                <div class="col-lg-2 col-md-12">
                                     <div class="form-group">
-                                        <label for="password">password</label>
-                                        <input type="password" name="password" class="form-control">
-                                    </div>
-                                </div>
-
-                                <!--password_confirmation-->
-                                <div class="col-lg-5 col-md-12">
-                                    <div class="form-group">
-                                        <label for="password_confirmation">password_confirmation</label>
-                                        <input type="password" name="password_confirmation" class="form-control">
+                                        <label for="edad">edad</label>
+                                        <input type="text" name="edad" class="form-control"
+                                        value="{{$collection->edad}}">
                                     </div>
                                 </div>
 
                             </div>
                             <button type="submit" class="btn btn-round btn-primary">Update</button> &nbsp;&nbsp;
                             <button type="reset" class="btn btn-round btn-default">
-                                <a href="{{ route('usuario_show', $collection->id) }}" title="show">
+                                <a href="{{ route('paciente_show', $collection->id) }}" title="show">
                                     <i class="fa fa-refresh">
                                         Reset
                                     </i>

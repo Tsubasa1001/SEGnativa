@@ -9,11 +9,6 @@ use Illuminate\Http\Request;
 class PacienteController extends Controller{
     public $tabla = 'Paciente';
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(){
         $collection = Paciente::all()->sortBy('id');
 
@@ -24,23 +19,21 @@ class PacienteController extends Controller{
         return view('cu.paciente.index', compact('collection'));
     }
 
-    public function create(){
-        //
-    }
+    public function create(){}
 
     public function store(Request $request){
         $gandalf = $request->validate([
-            'id' => 'required|numeric|unique:trabajadors',
-            'codigo' => 'required|alpha_num',
-            'ci' => 'required|alpha_num',
-            'nombre' => 'required|string',
-            'nacionalidad' => 'required|string',
-            'especialidad' => 'required|string',
-            'direccion' => 'required|string',
-            'email' => 'required|email|unique:trabajadors',
-            'celular' => 'required|numeric|min:60000000|max:79999999',
-            'edad' => 'required|min:1|max:150',
-            'genero' => 'required|string',
+            'id' => 'nullable|numeric|unique:trabajadors',
+            'codigo' => 'nullable|alpha_num',
+            'ci' => 'nullable|alpha_num',
+            'nombre' => 'nullable|string',
+            'nacionalidad' => 'nullable|string',
+            'especialidad' => 'nullable|string',
+            'direccion' => 'nullable|string',
+            'email' => 'nullable|email|unique:trabajadors',
+            'celular' => 'nullable|numeric|min:60000000|max:79999999',
+            'edad' => 'nullable|min:1|max:150',
+            'genero' => 'nullable|string',
         ]);
 
         $paciente = new Paciente;
@@ -70,8 +63,80 @@ class PacienteController extends Controller{
 
     public function edit(Paciente $paciente){}
 
-    public function update(Request $request, Paciente $paciente){
-        return redirect(route('paciente_index'));
+    public function update(Request $request, $id){
+        $item = Paciente::find($id);
+
+        if ($request->get('email') == $item['email']){
+            $request->validate([
+                'codigo' => 'nullable|alpha_num',
+                'ci' => 'nullable|alpha_num',
+                'nombre' => 'nullable|string',
+                'nacionalidad' => 'nullable|string',
+                'especialidad' => 'nullable|string',
+                'direccion' => 'nullable|string',
+                'celular' => 'nullable|numeric|min:6000000|max:7999999',
+                'edad' => 'nullable|min:1|max:150',
+                'genero' => 'nullable|string',
+            ]);
+        }else{
+            $request->validate([
+                'codigo' => 'nullable|alpha_num',
+                'ci' => 'nullable|alpha_num',
+                'nombre' => 'nullable|string',
+                'nacionalidad' => 'nullable|string',
+                'especialidad' => 'nullable|string',
+                'direccion' => 'nullable|string',
+                'email' => 'nullable|email|unique:trabajadors',
+                'celular' => 'nullable|numeric|min:6000000|max:7999999',
+                'edad' => 'nullable|min:1|max:150',
+                'genero' => 'nullable|string',
+            ]);
+        }
+
+        $codigo = $request->get('codigo');
+        $ci = $request->get('ci');
+        $nombre = $request->get('nombre');
+        $nacionalidad = $request->get('nacionalidad');
+        $especialidad = $request->get('especialidad');
+        $direccion = $request->get('direccion');
+        $email = $request->get('email');
+        $celular = $request->get('celular');
+        $edad = $request->get('edad');
+        $genero = $request->get('genero');
+
+        if ($codigo != null) {
+            $item->update(['codigo' => $codigo]);
+        }
+        if ($ci != null) {
+            $item->update(['ci' => $ci]);
+        }
+        if ($nombre != null) {
+            $item->update(['nombre' => $nombre]);
+        }
+        if ($nacionalidad != null) {
+            $item->update(['nacionalidad' => $nacionalidad]);
+        }
+        if ($especialidad != null) {
+            $item->update(['especialidad' => $especialidad]);
+        }
+        if ($direccion != null) {
+            $item->update(['direccion' => $direccion]);
+        }
+        if ($email != null) {
+            $item->update(['email' => $email]);
+        }
+        if ($celular != null) {
+            $item->update(['celular' => $celular]);
+        }
+        if ($edad != null) {
+            $item->update(['edad' => $edad]);
+        }
+        if ($genero != null) {
+            $item->update(['genero' => $genero]);
+        }
+
+        return redirect()->route('paciente_show', $id)
+            ->with('success', 'Actualizado sin errores :D');
     }
 
     public function destroy($paciente){
