@@ -111,6 +111,7 @@ class UsuarioController extends Controller{
     }
 
     public function edit($id){}
+
     public function update(Request $request, $id){
         $item = User::find($id);
 
@@ -142,7 +143,7 @@ class UsuarioController extends Controller{
         }
 
         return redirect()->route('usuario_show', $id)
-            ->with('success', 'Project updated successfully');
+            ->with('success', 'Actualizado sin errores :D');
     }
 
     public function destroy($usuario){
