@@ -23,14 +23,14 @@ class PacienteController extends Controller{
 
     public function store(Request $request){
         $gandalf = $request->validate([
-            'id' => 'nullable|numeric|unique:trabajadors',
+            'id' => 'required|numeric|unique:pacientes',
             'codigo' => 'nullable|alpha_num',
             'ci' => 'nullable|alpha_num',
-            'nombre' => 'nullable|string',
+            'nombre' => 'required|string',
             'nacionalidad' => 'nullable|string',
             'especialidad' => 'nullable|string',
             'direccion' => 'nullable|string',
-            'email' => 'nullable|email|unique:trabajadors',
+            'email' => 'required|email|unique:pacientes',
             'celular' => 'nullable|numeric|min:60000000|max:79999999',
             'edad' => 'nullable|min:1|max:150',
             'genero' => 'nullable|string',
@@ -53,7 +53,8 @@ class PacienteController extends Controller{
         $paciente->updated_at = Carbon::parse(today())->format('Y-m-d');
         $paciente->save();
 
-        return redirect(route('paciente_index'));
+        return redirect(route('paciente_index'))
+            ->with('success', 'Creado sin errores :D');
     }
 
     public function show($paciente){
@@ -142,6 +143,7 @@ class PacienteController extends Controller{
     public function destroy($paciente){
         $item = Paciente::find($paciente);
         $item->delete();
-        return redirect(route('paciente_index'));
+        return redirect(route('paciente_index'))
+            ->with('success', 'Eliminado sin errores :D');
     }
 }

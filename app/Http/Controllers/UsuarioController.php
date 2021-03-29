@@ -173,7 +173,8 @@ class UsuarioController extends Controller{
         ){
             $tmpT->delete();
         }
-        return redirect(route('usuario_index'));
+        return redirect(route('usuario_index'))
+            ->with('success', 'Eliminado sin errores :D');
     }
 
     public function logout () {

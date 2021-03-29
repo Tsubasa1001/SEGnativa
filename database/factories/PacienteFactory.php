@@ -23,6 +23,8 @@ class PacienteFactory extends Factory{
             'C/ Vitupue #98'
         ]);
 
+        $fecha = $this->faker->dateTimeBetween('-1 years', 'now', null);
+
         return [
             'id' => 1,
             'codigo' => '1',
@@ -36,8 +38,8 @@ class PacienteFactory extends Factory{
             'celular' => $this->faker->numerify('7#######'),
             'edad' => $this->faker->numerify('##'),
             'genero' => $generos[array_rand($generos)],
-            'created_at' => Carbon::parse(today())->format('Y-m-d'),
-            'updated_at' => Carbon::parse(today())->format('Y-m-d')
+            'created_at' => $fecha,
+            'updated_at' => $fecha,
         ];
     }
 }
