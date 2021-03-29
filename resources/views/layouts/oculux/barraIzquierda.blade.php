@@ -19,7 +19,7 @@
                     <li><a href="app-inbox.html"><i class="icon-envelope-open"></i>Messages</a></li>
                     <li><a href="javascript:void(0);"><i class="icon-settings"></i>Settings</a></li>
                     <li class="divider"></li>
-                    <li><a href="page-login.html"><i class="icon-power"></i>Logout</a></li>
+                    <li><a href="{{url('/logout')}}"><i class="icon-power"></i>Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -37,6 +37,10 @@
                         <li><a href="{{route("trabajador_index")}}">INDEX TRABAJADOR</a></li>
                         <li><a href="{{route("estadistica_index")}}">ESTADISTICA</a></li>
                         <li><a href="{{route("reporte_index")}}">REPORTE</a></li>
+                        
+                        <li><a href="{{route("promocion_index")}}">INDEX PROMOCION</a></li>
+                        <li><a href="{{route("equipamiento_index")}}">INDEX EQUIPAMIENTO</a></li>
+                        <li><a href="{{route("servicio_index")}}">INDEX SERVICIO</a></li>
                     </ul>
                 </li>
             </ul>
