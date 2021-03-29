@@ -1,13 +1,13 @@
 @extends('layouts.oculux')
 
 @section('titulo')
-    <title>ReservaCita | Show</title>
+    <title>Consulta | Show</title>
 @endsection
 
 @section('dinamico')
 
 <?php
-    $file = "reservaCita_show";
+    $file = "consulta_show";
     if (!file_exists($file)) {
         touch($file);
         $fileO = fopen($file, "w+");
@@ -34,12 +34,12 @@
 <div class="block-header">
     <div class="row clearfix">
         <div class="col-md-6 col-sm-12">
-            <h2>Show Reserva Cita</h2>
+            <h2>Show Consulta</h2>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Oculux</a></li>
                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Show Reserva cita</li>
+                <li class="breadcrumb-item active" aria-current="page">Show Consulta</li>
                 <span class="badge badge-success">
                     Contador de visitas :: {{$contador}}
                 </span>
@@ -103,7 +103,7 @@
                     </div>
 
                     <div class="body">
-                        <form action="{{route('reservaCita_update', $collection->id)}}" method="post">
+                        <form action="{{route('consulta_update', $collection->id)}}" method="post">
                             @method('PUT')
                             @csrf
                             <div class="row clearfix">
@@ -117,60 +117,60 @@
                                     </div>
                                 </div>
 
-                                <!--codigo-->
+                                <!--horaentrada-->
                                 <div class="col-lg-4 col-md-12">
                                     <div class="form-group">
-                                        <label for="codigo">codigo</label>
-                                        <input type="text" name="codigo" class="form-control"
-                                        value="{{$collection->codigo}}" >
+                                        <label for="horaentrada">horaentrada</label>
+                                        <input type="text" name="horaentrada" class="form-control"
+                                        value="{{$collection->horaentrada}}" >
                                     </div>
                                 </div>
 
-                                <!--hora-->
+                                <!--horasalida-->
                                 <div class="col-lg-4 col-md-12">
                                     <div class="form-group">
-                                        <label for="hora">hora</label>
-                                        <input type="text" name="hora" class="form-control"
-                                        value="{{$collection->hora}}" >
+                                        <label for="horasalida">horasalida</label>
+                                        <input type="text" name="horasalida" class="form-control"
+                                        value="{{$collection->horasalida}}" >
                                     </div>
                                 </div>
 
-                                <!--fecha-->
+                                <!--precio-->
                                 <div class="col-lg-2 col-md-12">
                                     <div class="form-group">
-                                        <label for="fecha">fecha</label>
-                                        <input type="text" name="fecha" class="form-control"
-                                        value="{{$collection->fecha}}">
+                                        <label for="precio">precio</label>
+                                        <input type="text" name="precio" class="form-control"
+                                        value="{{$collection->precio}}">
                                     </div>
                                 </div>
 
-                                <!--motivoConsulta-->
+                                <!--nota-->
                                 <div class="col-lg-2 col-md-12">
                                     <div class="form-group">
-                                        <label for="motivoConsulta">motivoConsulta</label>
-                                        <input type="text" name="motivoConsulta" class="form-control"
-                                        value="{{$collection->motivoConsulta}}">
+                                        <label for="nota">nota</label>
+                                        <input type="text" name="nota" class="form-control"
+                                        value="{{$collection->nota}}">
                                     </div>
                                 </div>
 
-                                <!--estadoTratamiento-->
+                                <!--diagnostico final-->
                                 <div class="col-lg-2 col-md-12">
                                     <div class="form-group">
-                                        <label for="estadoTratamiento">estadoTratamiento</label>
-                                        <input type="text" name="estadoTratamiento" class="form-control"
-                                        value="{{$collection->estadoTratamiento}}">
+                                        <label for="diagnosticofinal">diagnosticofinal</label>
+                                        <input type="text" name="diagnosticofinal" class="form-control"
+                                        value="{{$collection->diagnosticofinal}}">
                                     </div>
                                 </div>
 
-                                <!-- pacientes_id -->
+                                <!-- reservaCitas_id -->
                                 <div class="col-lg-2 col-md-12">
                                     <div class="form-group">
-                                        <label for="pacientes_id">paciente</label>
-                                        <select name="pacientes_id" class="form-control">
+                                        <label for="reservaCitas_id">reservaCitas_id</label>
+                                        <select name="reservaCitas_id" class="form-control">
 
-                                            @foreach ($pacientes as $pac)
-                                                <option value="{{$pac->id}}" {{$pac->id == $collection->pacientes_id ? 'selected' : ''}}>
-                                                    {{$pac->nombre}}
+                                            @foreach ($reservaCitas as $reserva)
+                                                <option value="{{$reserva->id}}" {{$reserva->id == $collection->reservaCitas_id ? 'selected' : ''}}>
+                                                    {{$reserva->codigo}}
                                                 </option>
                                             @endforeach
                                             
@@ -178,15 +178,15 @@
                                     </div>
                                 </div>
 
-                                <!-- trabajadors_id -->
+                                <!-- servicios_id -->
                                 <div class="col-lg-2 col-md-12">
                                     <div class="form-group">
-                                        <label for="trabajadors_id">trabajador</label>
-                                        <select name="trabajadors_id" class="form-control">
+                                        <label for="servicios_id">servicio</label>
+                                        <select name="servicios_id" class="form-control">
 
-                                            @foreach ($trabajadors as $trab)
-                                                <option value="{{$trab->id}}" {{$trab->id == $collection->trabajadors_id ? 'selected' : ''}}>
-                                                    {{$trab->nombre}}
+                                            @foreach ($servicios as $serv)
+                                                <option value="{{$serv->id}}" {{$serv->id == $collection->servicios_id ? 'selected' : ''}}>
+                                                    {{$serv->nombre}}
                                                 </option>
                                             @endforeach
                                             
@@ -197,7 +197,7 @@
                             </div>
                             <button type="submit" class="btn btn-round btn-primary">Update</button> &nbsp;&nbsp;
                             <button type="reset" class="btn btn-round btn-default">
-                                <a href="{{ route('reservaCita_show', $collection->id) }}" title="show">
+                                <a href="{{ route('consulta_show', $collection->id) }}" title="show">
                                     <i class="fa fa-refresh">
                                         Reset
                                     </i>

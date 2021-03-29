@@ -7,10 +7,12 @@ use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\PromocionController;
 use App\Http\Controllers\TrabajadorController;
 use App\Http\Controllers\ReservaCitaController;
+use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\EstadisticaController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\EquipamientoController;
 use App\Http\Controllers\ServicioController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +49,25 @@ Route::get('/ReservaCita/show/{id}', [ReservaCitaController::class, 'show'])->mi
 Route::get('/ReservaCita/edit/{id}', [ReservaCitaController::class, 'edit'])->middleware(['auth'])->name('reservaCita_edit');
 Route::put('/ReservaCita/update/{id}', [ReservaCitaController::class, 'update'])->middleware(['auth'])->name('reservaCita_update');
 Route::delete('/ReservaCita/destroy/{id}', [ReservaCitaController::class, 'destroy'])->middleware(['auth'])->name('reservaCita_destroy');
+
+/**Consulta */
+Route::get('/Consulta/index', [ConsultaController::class, 'index'])->middleware(['auth'])->name('consulta_index');
+Route::get('/Consulta/create', [ConsultaController::class, 'create'])->middleware(['auth'])->name('consulta_create');
+Route::post('/Consulta/store', [ConsultaController::class, 'store'])->middleware(['auth'])->name('consulta_store');
+Route::get('/Consulta/show/{id}', [ConsultaController::class, 'show'])->middleware(['auth'])->name('consulta_show');
+Route::get('/Consulta/edit/{id}', [ConsultaController::class, 'edit'])->middleware(['auth'])->name('consulta_edit');
+Route::put('/Consulta/update/{id}', [ConsultaController::class, 'update'])->middleware(['auth'])->name('consulta_update');
+Route::delete('/Consulta/destroy/{id}', [ConsultaController::class, 'destroy'])->middleware(['auth'])->name('consulta_destroy');
+
+/**skintest */
+Route::get('/Skintest/index', [SkinTestController::class, 'index'])->middleware(['auth'])->name('skintest_index');
+Route::get('/Skintest/create', [SkinTestController::class, 'create'])->middleware(['auth'])->name('skintest_create');
+Route::post('/Skintest/store', [SkinTestController::class, 'store'])->middleware(['auth'])->name('skintest_store');
+Route::get('/Skintest/show/{id}', [SkinTestController::class, 'show'])->middleware(['auth'])->name('skintest_show');
+Route::get('/Skintest/edit/{id}', [SkinTestController::class, 'edit'])->middleware(['auth'])->name('skintest_edit');
+Route::put('/Skintest/update/{id}', [SkinTestController::class, 'update'])->middleware(['auth'])->name('skintest_update');
+Route::delete('/Skintest/destroy/{id}', [SkinTestController::class, 'destroy'])->middleware(['auth'])->name('skintest_destroy');
+
 
 
 
