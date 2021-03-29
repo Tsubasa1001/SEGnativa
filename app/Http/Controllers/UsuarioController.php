@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paciente;
+use App\Models\Trabajador;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller{
     public $tabla = 'Usuario';
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(){
-        $collection = User::all();
+        $collection = User::all()->sortBy('id');
 
         if ($collection->isEmpty()){
             $collection = 'No hay registros.';
@@ -24,70 +24,157 @@ class UsuarioController extends Controller{
         return view('cu.usuario.index', compact('collection'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function create(){}
+
+    public function store(Request $request){
+        /**validar las entradas */
+        $gandalf = $request->validate([
+            'id' => 'nullable|unique:users',
+            'nombre' => 'required|string',
+            'privilegio' => 'required|numeric',
+            'email' => 'required|email|unique:users',
+            'tipo_patra' => 'required'
+        ]);
+        $nombre = $request->get('nombre');
+        $email = $request->get('email');
+        $privilegio = $request->get('privilegio');
+
+        /**crear [paciente/trabajador] */
+        if (Paciente::all()->isEmpty()){
+            $pk_last_pa = 1;
+        }else{
+            $pk_last_pa = Paciente::all()->sortBy('id')->last()['id'];
+            $pk_last_pa = $pk_last_pa + 1;
+        }
+
+        if (Trabajador::all()->isEmpty()){
+            $pk_last_tra = 1;
+        }else{
+            $pk_last_tra = Trabajador::all()->sortBy('id')->last()['id'];
+            $pk_last_tra = $pk_last_tra + 1;
+        }
+
+        if ($request->get('tipo_patra') == '1'){
+            DB::table('pacientes')->insert([
+                'id' => $pk_last_pa,
+                'nombre' => $nombre,
+                'email' => $email,
+                'codigo' => 'NPA'.$pk_last_pa,
+                'created_at' => Carbon::parse(today())->format('Y-m-d'),
+                'updated_at' => Carbon::parse(today())->format('Y-m-d')
+            ]);
+        }else{
+            DB::table('trabajadors')->insert([
+                'id' => $pk_last_tra,
+                'codigo' => 'NTR'.$pk_last_tra,
+                'nombre' => $nombre,
+                'email' => $email,
+                'created_at' => Carbon::parse(today())->format('Y-m-d'),
+                'updated_at' => Carbon::parse(today())->format('Y-m-d')
+            ]);
+        }
+
+        /**asignar pk si esta vacio */
+        $pk_last_user = User::all()->sortBy('id')->last()['id'];
+        $pk_last_user = $pk_last_user + 1;
+
+        /**creacion del paciente/trabajador */
+
+        /**creacion del usuario */
+        $usuario = new User;
+        if ($request->get('id') == null){
+            $usuario->id = $pk_last_user;
+        }else{
+            $usuario->id = $request->get('id');
+        }
+        $usuario->name = $request->get('nombre');
+        $usuario->privilegio = $request->get('privilegio');
+        $usuario->email = $request->get('email');
+        $usuario->password = Hash::make($email);
+        $usuario->tipo_patra = $request->get('tipo_patra');
+        if ($request->get('tipo_patra') == 1){
+            $usuario->id_patra = $pk_last_pa;
+        }else{
+            $usuario->id_patra = $pk_last_tra;
+        }
+        $usuario->created_at = Carbon::parse(today())->format('Y-m-d');
+        $usuario->updated_at = Carbon::parse(today())->format('Y-m-d');
+
+        $usuario->save();
+
+        return redirect(route('usuario_index'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function show($usuario){
+        $collection = User::find($usuario);
+        return view('cu.usuario.show', compact('collection'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function edit($id){}
+
+    public function update(Request $request, $id){
+        $item = User::find($id);
+
+        if ($request->get('email') == $item['email']){
+            $request->validate([
+                'password' => 'nullable|string|confirmed|min:8',
+                'privilegio' => 'nullable|numeric',
+            ]);
+        }else{
+            $request->validate([
+                'email' => 'nullable|email|max:255|unique:users',
+                'password' => 'nullable|string|confirmed|min:8',
+                'privilegio' => 'nullable|numeric',
+            ]);
+        }
+
+        $email = $request->get('email');
+        $password = $request->get('password');
+        $privilegio = $request->get('privilegio');
+
+        if ($email != null) {
+            $item->update(['email' => $email]);
+        }
+        if ($password != null) {
+            $item->update(['password' => Hash::make($password)]);
+        }
+        if ($privilegio != null) {
+            $item->update(['privilegio' => $privilegio]);
+        }
+
+        return redirect()->route('usuario_show', $id)
+            ->with('success', 'Actualizado sin errores :D');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    public function destroy($usuario){
+        /**busco el usuario a eliminar */
+        $item = User::find($usuario);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        /**guardo los valores que relacionan a [paciente/trabajador] */
+        $item_nombre = $item['name'];
+        $tipo_patra = $item['tipo_patra'];
+        $id_patra = $item['id_patra'];
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        /**elimino el usuario */
+        $item->delete();
+
+        /**si corresponde, elimino al [paciente/trabajador] */
+        $tmpP = Paciente::find($id_patra);
+        $tmpT = Trabajador::find($id_patra);
+
+        if (
+            ($tipo_patra == 1) &&
+            (Paciente::find($id_patra) != null)
+        ){
+            $tmpP->delete();
+        }else if (
+            ($tipo_patra == 2) &&
+            (Trabajador::find($id_patra) != null)
+        ){
+            $tmpT->delete();
+        }
+        return redirect(route('usuario_index'))
+            ->with('success', 'Eliminado sin errores :D');
     }
 
     public function logout () {

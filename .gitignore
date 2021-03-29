@@ -11,4 +11,5 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-public/xor
+public/Chart.js-2.9.4/
+public/xor/

@@ -15,7 +15,7 @@ class PacienteSeeder extends Seeder{
      * @return void
      */
     public function run(){
-        for ($pk=1; $pk <= 10; $pk++) {
+        for ($pk=1; $pk <= 50; $pk++) {
             $tipo_patra = 1;
 
             $objeto = Paciente::factory();

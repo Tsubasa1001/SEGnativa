@@ -12,7 +12,7 @@ class CreateUsersTable extends Migration{
      */
     public function up() {
         Schema::create('users', function (Blueprint $table) {
-            $table->id()->autoIncrement(false);
+            $table->id()->autoIncrement(true);
             $table->string('name', 50);
             $table->enum('privilegio', ['1', '2', '3']);
             $table->string('email', 50)->unique();

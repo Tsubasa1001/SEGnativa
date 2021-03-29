@@ -2,18 +2,61 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Paciente;
+use App\Models\Trabajador;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use PDF;
 
-class ReporteController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+class ReporteController extends Controller{
+
+    public function index(){
+        $collection = [];
+        return view('cu.reporte.index', compact('collection'));
+    }
+
+    public function reportePacientes(){
+        $collection = Paciente::all();
+
+        $fila = '
+        <h1>NATIVA - 2021</h1>
+        <h5>Reporte :: contacto de pacientes</h5>';
+
+        $nombre = auth()->user()->name;
+        $mail = auth()->user()->email;
+        $fila = $fila . '<br>Usuario ::' . $nombre . '<br>Email ::' . $mail;
+
+        $fila = $fila . '
+        <table>
+            <tr>
+                <th>codigo</th>
+                <th>ci</th>
+                <th>nombre</th>
+                <th>direccion</th>
+                <th>email</th>
+                <th>celular</th>
+            </tr>';
+            foreach($collection as $item){
+                $fila = $fila.'<tr>
+                    <td>'.$item->codigo.'</td>
+                    <td>'.$item->ci.'</td>
+                    <td>'.$item->nombre.'</td>
+                    <td>'.$item->direccion.'</td>
+                    <td>'.$item->email.'</td>
+                    <td>'.$item->celular.'</td>
+                </tr>';
+            }
+        $fila = $fila.'</table>
+        <br>';
+
+        $fecha = Carbon::parse(today())->format('d-m-Y H:m:s');
+        $fila = $fila .'Generado :: '. $fecha;
+
+        $pdf = \PDF::loadHtml($fila);
+
+        // download PDF file with download method
+        return $pdf->download('reporte_usuarios_nativa_'.$fecha.'.pdf');
     }
 
     /**
