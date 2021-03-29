@@ -39,7 +39,7 @@
                 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Oculux</a></li>
                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Show Consulta</li>
+                <li class="breadcrumb-item active" aria-current="page">Show  Consulta</li>
                 <span class="badge badge-success">
                     Contador de visitas :: {{$contador}}
                 </span>

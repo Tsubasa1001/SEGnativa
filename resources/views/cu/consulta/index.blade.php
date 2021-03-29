@@ -78,7 +78,7 @@
                                 <thead>
                                     <tr>
                                         <th>pk</th>
-                                        <th class="w60">Hora entrada</th>
+                                        <th class="w60">HoraEntrada</th>
                                         <th>Hora salida</th>
                                         <th>Precio</th>
                                         <th class="w100">Action</th>
