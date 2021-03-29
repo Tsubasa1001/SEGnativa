@@ -34,7 +34,7 @@
     <div class="block-header">
         <div class="row clearfix">
             <div class="col-md-6 col-sm-12">
-                <h2>Paciente List</h2>
+                <h2>ReservaCita List</h2>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Oculux</a></li>
@@ -65,6 +65,14 @@
 
                     <!-- INDEX -->
                     <div class="tab-pane active show" id="ReservaCitas">
+                        @if ($collection == 'No hay registros.')
+                         <br>
+                            <span class="badge badge-default">
+                                <h3>'No hay registros.'</h3>
+                            </span>
+                        @else
+                        
+                        
                         <div class="table-responsive">
                             <table class="table table-hover table-custom spacing8">
                                 <thead>
@@ -91,10 +99,11 @@
                                             <td>
 
                                                 @if ($item->privilegio != '1')
-                                                    <button class="btn btn-sm btn-default"
-                                                    type="button" title="Edit">
-                                                        <i class="fa fa-edit">
-                                                        </i>
+                                                    <button type="button" class="btn btn-sm btn-default"
+                                                        title="Show">
+                                                        <a href="{{ route('reservaCita_show', $item->id) }}" title="show">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
                                                     </button>
 
                                                     <form action="{{ url("ReservaCita/destroy/{$item->id}")}}"
@@ -107,15 +116,15 @@
                                                             </i>
                                                         </button>
                                                     </form>
-                                                @endif
-
+                                                    @endif
                                             </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    @endif
+                </div>
 
                     <!-- CREATE -->
                     <div class="tab-pane" id="addReservaCita">
@@ -178,35 +187,57 @@
 
                                     
 
+                                    <!-- motivo consulta -->
+                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="motivoConsulta">motivo Consulta</label>
+                                            <input type="text" class="form-control"
+                                            placeholder="dolor de cuello" name='motivoConsulta'
+                                            value="{{ old('motivoConsulta') }}">
+                                        </div>
+                                    </div>
+
                                     <!-- estado tratamiento -->
                                     <div class="col-lg-3 col-md-3 col-sm-12">
                                         <div class="form-group">
                                             <label for="estadoTratamiento">estado tratamiento</label>
                                             <input type="text" class="form-control"
-                                            placeholder="1" name='estadoTratamiento'
+                                            placeholder="iniciando" name='estadoTratamiento'
                                             value="{{ old('estadoTratamiento') }}">
                                         </div>
                                     </div>
 
-                                    <!-- paciente_id -->
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="pacientes_id">paciente</label>
-                                            <input type="text" class="form-control"
-                                            placeholder="1" name='paciente'
-                                            value="{{ old('pacientes_id') }}">
-                                        </div>
-                                    </div>
+                                    <!-- pacientes_id -->
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="pacientes_id">Paciente</label>
+                                        <select name="pacientes_id" class="form-control">
 
-                                    <!-- trabajador_id -->
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
-                                        <div class="form-group">
-                                            <label for="trabajadors_id">trabajador</label>
-                                            <input type="text" class="form-control"
-                                            placeholder="1" name='trabajador'
-                                            value="{{ old('trabajadors_id') }}">
-                                        </div>
+                                            @foreach ($pacientes as $pac)
+                                                <option value="{{$pac->id}}">
+                                                    {{$pac->nombre}}
+                                                </option>
+                                            @endforeach
+                                            
+                                        </select>
                                     </div>
+                                </div>
+
+                                <!-- trabajadors_id -->
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="trabajadors_id">Trabajador</label>
+                                        <select name="trabajadors_id" class="form-control">
+
+                                            @foreach ($trabajadors as $trab)
+                                                <option value="{{$trab->id}}">
+                                                    {{$trab->nombre}}
+                                                </option>
+                                            @endforeach
+                                            
+                                        </select>
+                                    </div>
+                                </div>
 
                                     
 
