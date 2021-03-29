@@ -1,6 +1,6 @@
 <?php
 
-    $file = "home";
+    $file = "welcome";
 
     if (!file_exists($file)) {
 
@@ -63,19 +63,17 @@
             <li><a href="#" id="ambiente">Ambiente</a></li>
             <li><a href="#" id="servicios">Servicios</a></li>
             <li><a href="#" id="contacto">Contacto</a></li>
+            <li>
             @auth
                 <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                <div class="alert alert-success" role="alert">
-                    Contador de visitas :: {{$contador}}
-                </div>
+                  Visitas : <b>{{$contador}}</b>
             @else
                 <a href="{{ route('login') }}" id="login">
-                    Log in
+                  Log in
                 </a>
-                <div class="alert alert-success" role="alert">
-                  Contador de visitas :: {{$contador}}
-              </div>
+                  Visitas : <b>{{$contador}}</b>
             @endauth
+            </li>
             
         </ul>
      </div>
