@@ -61,6 +61,30 @@
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addTrabajador">Add Trabajador</a></li>
             </ul>
 
+            @if(session()->has('success'))
+                <br>
+                <div class="tab-pane">
+                    <ul>
+                        <li>
+                            <span class="badge badge-success">
+                            {{ session()->get('success') }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="tab-pane">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>
+                                <span class="badge badge-danger">{{ $error }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="tab-content mt-0">
 
                 <!-- INDEX -->
@@ -133,18 +157,6 @@
 
                 <!-- CREATE -->
                 <div class="tab-pane" id="addTrabajador">
-                    @if ($errors->any())
-                        <div class="tab-pane">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>
-                                        <span class="badge badge-danger">{{ $error }}</span>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
                     <div class="body mt-2">
                         <form action="{{route('trabajador_store')}}" method="post">
                             @csrf
@@ -153,7 +165,7 @@
                                 <!-- id -->
                                 <div class="col-lg-3 col-md-3 col-sm-12">
                                     <div class="form-group">
-                                        <label for="id">id</label>
+                                        <label for="id">id (obligatorio)</label>
                                         <input type="text" class="form-control"
                                         placeholder="1" name='id'
                                         value="{{ old('id') }}">
@@ -193,7 +205,7 @@
                                 <!-- nombre -->
                                 <div class="col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <label for="nombre">nombre</label>
+                                        <label for="nombre">nombre (obligatorio)</label>
                                         <input type="text" class="form-control"
                                         placeholder="Bon Jovi" name='nombre'
                                         value="{{ old('nombre') }}">
@@ -243,7 +255,7 @@
                                 <!-- email -->
                                 <div class="col-lg-3 col-md-3 col-sm-12">
                                     <div class="form-group">
-                                        <label for="email">email</label>
+                                        <label for="email">email (obligatorio)</label>
                                         <input type="text" class="form-control"
                                         placeholder="test.01@gmail.com" name='email' type='email'
                                         value="{{ old('email') }}">

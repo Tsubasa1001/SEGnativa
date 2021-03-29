@@ -27,18 +27,18 @@ class TrabajadorController extends Controller{
     public function store(Request $request){
         $gandalf = $request->validate([
             'id' => 'required|numeric|unique:trabajadors',
-            'codigo' => 'required|alpha_num',
-            'ci' => 'required|alpha_num',
+            'codigo' => 'nullable|alpha_num',
+            'ci' => 'nullable|alpha_num',
             'nombre' => 'required|string',
-            'nacionalidad' => 'required|string',
-            'especialidad' => 'required|string',
-            'cargo' => 'required|string',
-            'ocupacion' => 'required|string',
-            'direccion' => 'required|string',
+            'nacionalidad' => 'nullable|string',
+            'especialidad' => 'nullable|string',
+            'cargo' => 'nullable|string',
+            'ocupacion' => 'nullable|string',
+            'direccion' => 'nullable|string',
             'email' => 'required|email|unique:trabajadors',
-            'celular' => 'required|numeric|min:60000000|max:79999999',
-            'edad' => 'required|min:1|max:150',
-            'genero' => 'required|string',
+            'celular' => 'nullable|numeric|min:60000000|max:79999999',
+            'edad' => 'nullable|min:1|max:150',
+            'genero' => 'nullable|string',
         ]);
 
         $trabajador = new Trabajador;
@@ -59,7 +59,8 @@ class TrabajadorController extends Controller{
         $trabajador->updated_at = Carbon::parse(today())->format('Y-m-d');
         $trabajador->save();
 
-        return redirect(route('trabajador_index'));
+        return redirect(route('trabajador_index'))
+            ->with('success', 'Creado sin errores :D');
     }
 
     public function show($trabajador){
@@ -160,6 +161,7 @@ class TrabajadorController extends Controller{
     public function destroy($trabajador){
         $item = Trabajador::find($trabajador);
         $item->delete();
-        return redirect(route('trabajador_index'));
+        return redirect(route('trabajador_index'))
+            ->with('success', 'Eliminado sin errores :D');
     }
 }

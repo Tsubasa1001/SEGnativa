@@ -68,6 +68,7 @@ Route::get('/Estadistica/index', [EstadisticaController::class, 'index'])->middl
 
 /**Reporte */
 Route::get('/Reporte/index', [ReporteController::class, 'index'])->middleware(['auth'])->name('reporte_index');
+Route::get('/Reporte/paciente', [ReporteController::class, 'reportePacientes'])->middleware(['auth'])->name('reporte_index_paciente');
 
 /**Sesion */
 Route::get('/logout', [UsuarioController::class, 'logout']);

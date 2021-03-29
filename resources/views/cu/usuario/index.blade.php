@@ -61,6 +61,30 @@
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addUser">Add User</a></li>
             </ul>
 
+            @if(session()->has('success'))
+                <br>
+                <div class="tab-pane">
+                    <ul>
+                        <li>
+                            <span class="badge badge-success">
+                            {{ session()->get('success') }}
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="tab-pane">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>
+                                <span class="badge badge-danger">{{ $error }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="tab-content mt-0">
 
                 <!-- INDEX -->

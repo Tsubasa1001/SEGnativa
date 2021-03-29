@@ -49,6 +49,7 @@
     </div>
 </div>
 
+<a href="{{route('reporte_index_paciente')}}">REPORTE A</a>
 
 
 @endsection
