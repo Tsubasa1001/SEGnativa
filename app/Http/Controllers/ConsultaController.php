@@ -77,7 +77,7 @@ class ConsultaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\consulta  $consulta
+     * @param  \App\Models\consulta  $consulta .. 
      * @return \Illuminate\Http\Response
      */
     public function show($id)
