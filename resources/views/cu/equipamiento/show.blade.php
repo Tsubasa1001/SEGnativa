@@ -1,13 +1,13 @@
 @extends('layouts.oculux')
 
 @section('titulo')
-    <title>Promocion | Show</title>
+    <title>Equipamiento | Show</title>
 @endsection
 
 @section('dinamico')
 
 <?php
-    $file = "promocion_show";
+    $file = "equipamiento_show";
     if (!file_exists($file)) {
         touch($file);
         $fileO = fopen($file, "w+");
@@ -39,7 +39,7 @@
                 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Oculux</a></li>
                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Show Promocion</li>
+                <li class="breadcrumb-item active" aria-current="page">Show Equipamiento</li>
                 <span class="badge badge-success">
                     Contador de visitas :: {{$contador}}
                 </span>
@@ -103,7 +103,7 @@
                     </div>
 
                     <div class="body">
-                        <form action="{{route('promocion_update', $collection->id)}}" method="post">
+                        <form action="{{route('equipamiento_update', $collection->id)}}" method="post">
                             @method('PUT')
                             @csrf
                             <div class="row clearfix">
@@ -117,6 +117,15 @@
                                     </div>
                                 </div>
 
+                                <!--codigo-->
+                                <div class="col-lg-2 col-md-12">
+                                    <div class="form-group">
+                                        <label for="codigo">codigo</label>
+                                        <input type="text" name="codigo" class="form-control"
+                                        value="{{$collection->codigo}}" >
+                                    </div>
+                                </div>
+
                                 <!--nombre-->
                                 <div class="col-lg-4 col-md-12">
                                     <div class="form-group">
@@ -126,28 +135,10 @@
                                     </div>
                                 </div>
 
-                                <!--cantidad-->
-                                <div class="col-lg-2 col-md-12">
-                                    <div class="form-group">
-                                        <label for="cantidad">cantidad serv.</label>
-                                        <input type="text" name="cantidad" class="form-control"
-                                        value="{{$collection->cantidad}}" >
-                                    </div>
-                                </div>
-
-                                <!--precio-->
-                                <div class="col-lg-2 col-md-12">
-                                    <div class="form-group">
-                                        <label for="precio">precio</label>
-                                        <input type="text" name="precio" class="form-control"
-                                        value="{{$collection->precio}}">
-                                    </div>
-                                </div>
-
                             </div>
                             <button type="submit" class="btn btn-round btn-primary">Update</button> &nbsp;&nbsp;
                             <button type="reset" class="btn btn-round btn-default">
-                                <a href="{{ route('promocion_show', $collection->id) }}" title="show">
+                                <a href="{{ route('equipamiento_show', $collection->id) }}" title="show">
                                     <i class="fa fa-refresh">
                                         Reset
                                     </i>

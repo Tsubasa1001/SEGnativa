@@ -37,6 +37,8 @@
                         <li><a href="{{route("trabajador_index")}}">INDEX TRABAJADOR</a></li>
                         
                         <li><a href="{{route("promocion_index")}}">INDEX PROMOCION</a></li>
+                        <li><a href="{{route("equipamiento_index")}}">INDEX EQUIPAMIENTO</a></li>
+                        <li><a href="{{route("servicio_index")}}">INDEX SERVICIO</a></li>
                     </ul>
                 </li>
             </ul>

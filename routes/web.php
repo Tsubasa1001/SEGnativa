@@ -6,6 +6,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\PromocionController;
 use App\Http\Controllers\TrabajadorController;
+use App\Http\Controllers\EquipamientoController;
+use App\Http\Controllers\ServicioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +21,7 @@ use App\Http\Controllers\TrabajadorController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/dashboard', function () {
@@ -29,7 +31,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 /**SARIAH */
-/**GUSTAVO */
+/**-------------------------------GUSTAVO--------------------------------------- */
 //Promociones
 Route::get('/Promocion/index', [PromocionController::class, 'index'])->middleware(['auth'])->name('promocion_index');
 Route::get('/Promocion/create', [PromocionController::class, 'create'])->middleware(['auth'])->name('promocion_create');
@@ -38,6 +40,24 @@ Route::get('/Promocion/show/{id}', [PromocionController::class, 'show'])->middle
 Route::get('/Promocion/edit/{id}', [PromocionController::class, 'edit'])->middleware(['auth'])->name('promocion_edit');
 Route::put('/Promocion/update/{id}', [PromocionController::class, 'update'])->middleware(['auth'])->name('promocion_update');
 Route::delete('/Promocion/destroy/{id}', [PromocionController::class, 'destroy'])->middleware(['auth'])->name('promocion_destroy');
+
+//Equipamientos
+Route::get('/Equipamiento/index', [EquipamientoController::class, 'index'])->middleware(['auth'])->name('equipamiento_index');
+Route::get('/Equipamiento/create', [EquipamientoController::class, 'create'])->middleware(['auth'])->name('equipamiento_create');
+Route::post('/Equipamiento/store', [EquipamientoController::class, 'store'])->middleware(['auth'])->name('equipamiento_store');
+Route::get('/Equipamiento/show/{id}', [EquipamientoController::class, 'show'])->middleware(['auth'])->name('equipamiento_show');
+Route::get('/Equipamiento/edit/{id}', [EquipamientoController::class, 'edit'])->middleware(['auth'])->name('equipamiento_edit');
+Route::put('/Equipamiento/update/{id}', [EquipamientoController::class, 'update'])->middleware(['auth'])->name('equipamiento_update');
+Route::delete('/Equipamiento/destroy/{id}', [EquipamientoController::class, 'destroy'])->middleware(['auth'])->name('equipamiento_destroy');
+
+//Servicios
+Route::get('/Servicio/index', [ServicioController::class, 'index'])->middleware(['auth'])->name('servicio_index');
+Route::get('/Servicio/create', [ServicioController::class, 'create'])->middleware(['auth'])->name('servicio_create');
+Route::post('/Servicio/store', [ServicioController::class, 'store'])->middleware(['auth'])->name('servicio_store');
+Route::get('/Servicio/show/{id}', [ServicioController::class, 'show'])->middleware(['auth'])->name('servicio_show');
+Route::get('/Servicio/edit/{id}', [ServicioController::class, 'edit'])->middleware(['auth'])->name('servicio_edit');
+Route::put('/Servicio/update/{id}', [ServicioController::class, 'update'])->middleware(['auth'])->name('servicio_update');
+Route::delete('/Servicio/destroy/{id}', [ServicioController::class, 'destroy'])->middleware(['auth'])->name('servicio_destroy');
 
 /**======================================================================== */
 /**                               E Y V E R                                 */

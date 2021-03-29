@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Promocions extends Migration
+class Servicios extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class Promocions extends Migration
      */
     public function up()
     {
-        Schema::create('promocions', function (Blueprint $table) {
+        Schema::create('servicios', function (Blueprint $table) {
             $table->integer('id')->unsigned();
             $table->primary('id');
             $table->string('nombre', 50);
-            $table->integer('cantidad', false)->nullable();
             $table->float('precio', 8, 2);
+            $table->integer('id_equipamiento')->unsigned();
+            $table->foreign('id_equipamiento')->references('id')->on('equipamientos');
+            $table->integer('id_promocion')->unsigned();
+            $table->foreign('id_promocion')->references('id')->on('promocions');
             $table->date('created_at');
             $table->date('updated_at');
         });
@@ -32,7 +35,7 @@ class Promocions extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('promocions');
+        Schema::dropIfExists('servicios');
         Schema::enableForeignKeyConstraints();
     }
 }

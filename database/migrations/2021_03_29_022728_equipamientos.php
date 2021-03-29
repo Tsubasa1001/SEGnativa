@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Promocions extends Migration
+class Equipamientos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class Promocions extends Migration
      */
     public function up()
     {
-        Schema::create('promocions', function (Blueprint $table) {
+        Schema::create('equipamientos', function (Blueprint $table) {
             $table->integer('id')->unsigned();
             $table->primary('id');
+            $table->string('codigo', 50)->unique()->nullable();
             $table->string('nombre', 50);
-            $table->integer('cantidad', false)->nullable();
-            $table->float('precio', 8, 2);
             $table->date('created_at');
             $table->date('updated_at');
         });
@@ -32,7 +31,7 @@ class Promocions extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('promocions');
+        Schema::dropIfExists('equipamientos');
         Schema::enableForeignKeyConstraints();
     }
 }

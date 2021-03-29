@@ -1,13 +1,13 @@
 @extends('layouts.oculux')
 
 @section('titulo')
-    <title>Promocion | Index</title>
+    <title>Servicio | Index</title>
 @endsection
 
 @section('dinamico')
 
 <?php
-    $file = "promocion_index";
+    $file = "servicio_index";
     if (!file_exists($file)) {
         touch($file);
         $fileO = fopen($file, "w+");
@@ -34,12 +34,12 @@
 <div class="block-header">
     <div class="row clearfix">
         <div class="col-md-6 col-sm-12">
-            <h2>Promocion List</h2>
+            <h2>Servicio List</h2>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Oculux</a></li>
                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Promocion List</li>
+                <li class="breadcrumb-item active" aria-current="page">Servicio List</li>
                 <span class="badge badge-success">
                     Contador de visitas :: {{$contador}}
                 </span>
@@ -57,14 +57,14 @@
         <div class="card">
 
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Promociones">Promociones</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addPromocion">Add Promocion</a></li>
+                <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#Servicios">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addServicio">Add Servicio</a></li>
             </ul>
 
             <div class="tab-content mt-0">
 
                 <!-- INDEX -->
-                <div class="tab-pane active show" id="Promociones">
+                <div class="tab-pane active show" id="Servicios">
                     @if ($collection == 'No hay registros.')
                         <br>
                         <span class="badge badge-default">
@@ -77,8 +77,9 @@
                                     <tr>
                                         <th>pk</th>
                                         <th class="w60">Nombre</th>
-                                        <th>Cantidad Servicios</th>
                                         <th>Precio</th>
+                                        <th>Id equipamiento</th>
+                                        <th>Id promo</th>
                                         <th class="w100">Action</th>
                                     </tr>
                                 </thead>
@@ -91,20 +92,25 @@
                                             <td>
                                                 <h6 class="mb-0">{{$item->nombre}}</h6>
                                             </td>
-                                            <td>{{$item->cantidad}}</td>
                                             <td>
                                                     {{$item->precio}}
+                                            </td>
+                                            <td>
+                                                {{$item->id_equipamiento}}
+                                            </td>
+                                            <td>
+                                                {{$item->id_promocion}}
                                             </td>
                                             <td>
                                                 @if ($item->privilegio != '1')
                                                     <button type="button" class="btn btn-sm btn-default"
                                                     title="Show">
-                                                        <a href="{{ route('promocion_show', $item->id) }}" title="show">
+                                                        <a href="{{ route('servicio_show', $item->id) }}" title="show">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
                                                     </button>
 
-                                                    <form action="{{ url("Promocion/destroy/{$item->id}")}}"
+                                                    <form action="{{ url("Servicio/destroy/{$item->id}")}}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -125,7 +131,7 @@
                 </div>
 
                 <!-- CREATE -->
-                <div class="tab-pane" id="addPromocion">
+                <div class="tab-pane" id="addServicio">
                     @if ($errors->any())
                         <div class="tab-pane">
                             <ul>
@@ -139,7 +145,7 @@
                     @endif
 
                     <div class="body mt-2">
-                        <form action="{{route('promocion_store')}}" method="post">
+                        <form action="{{route('servicio_store')}}" method="post">
                             @csrf
                             <div class="row clearfix">
 
@@ -163,16 +169,6 @@
                                     </div>
                                 </div>
 
-                                <!-- cantidad -->
-                                <div class="col-lg-3 col-md-3 col-sm-12">
-                                    <div class="form-group">
-                                        <label for="cantidad">cantidad serv.</label>
-                                        <input type="text" class="form-control"
-                                        placeholder="2" name='cantidad'
-                                        value="{{ old('cantidad') }}">
-                                    </div>
-                                </div>
-
                                 <!-- precio -->
                                 <div class="col-lg-3 col-md-3 col-sm-12">
                                     <div class="form-group">
@@ -182,6 +178,39 @@
                                         value="{{ old('precio') }}">
                                     </div>
                                 </div>
+
+                                <!-- id_equipamiento -->
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="id_equipamiento">Equipamiento</label>
+                                        <select name="id_equipamiento" class="form-control">
+
+                                            @foreach ($equipamientos as $eq)
+                                                <option value="{{$eq->id}}">
+                                                    {{$eq->nombre}}
+                                                </option>
+                                            @endforeach
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- id_promo -->
+                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="id_promocion">Promocion</label>
+                                        <select name="id_promocion" class="form-control">
+
+                                            @foreach ($promociones as $promo)
+                                                <option value="{{$promo->id}}">
+                                                    {{$promo->nombre}}
+                                                </option>
+                                            @endforeach
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary">Add</button>
                                     <button type="reset" class="btn btn-secondary" data-dismiss="modal">Reset</button>

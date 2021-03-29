@@ -1,13 +1,13 @@
 @extends('layouts.oculux')
 
 @section('titulo')
-    <title>Promocion | Show</title>
+    <title>Servicio | Show</title>
 @endsection
 
 @section('dinamico')
 
 <?php
-    $file = "promocion_show";
+    $file = "servicio_show";
     if (!file_exists($file)) {
         touch($file);
         $fileO = fopen($file, "w+");
@@ -34,12 +34,12 @@
 <div class="block-header">
     <div class="row clearfix">
         <div class="col-md-6 col-sm-12">
-            <h2>Show Promocion</h2>
+            <h2>Show Servicio</h2>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Oculux</a></li>
                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Show Promocion</li>
+                <li class="breadcrumb-item active" aria-current="page">Show Servicios</li>
                 <span class="badge badge-success">
                     Contador de visitas :: {{$contador}}
                 </span>
@@ -103,7 +103,7 @@
                     </div>
 
                     <div class="body">
-                        <form action="{{route('promocion_update', $collection->id)}}" method="post">
+                        <form action="{{route('servicio_update', $collection->id)}}" method="post">
                             @method('PUT')
                             @csrf
                             <div class="row clearfix">
@@ -126,15 +126,6 @@
                                     </div>
                                 </div>
 
-                                <!--cantidad-->
-                                <div class="col-lg-2 col-md-12">
-                                    <div class="form-group">
-                                        <label for="cantidad">cantidad serv.</label>
-                                        <input type="text" name="cantidad" class="form-control"
-                                        value="{{$collection->cantidad}}" >
-                                    </div>
-                                </div>
-
                                 <!--precio-->
                                 <div class="col-lg-2 col-md-12">
                                     <div class="form-group">
@@ -144,10 +135,42 @@
                                     </div>
                                 </div>
 
+                                <!-- id_equipamiento -->
+                                <div class="col-lg-2 col-md-12">
+                                    <div class="form-group">
+                                        <label for="id_equipamiento">Equipamiento</label>
+                                        <select name="id_equipamiento" class="form-control">
+
+                                            @foreach ($equipamientos as $eq)
+                                                <option value="{{$eq->id}}" {{$eq->id == $collection->id_equipamiento ? 'selected' : ''}}>
+                                                    {{$eq->nombre}}
+                                                </option>
+                                            @endforeach
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- id_promo -->
+                                <div class="col-lg-2 col-md-12">
+                                    <div class="form-group">
+                                        <label for="id_promocion">Promocion</label>
+                                        <select name="id_promocion" class="form-control">
+
+                                            @foreach ($promociones as $promo)
+                                                <option value="{{$promo->id}}" {{$promo->id == $collection->id_promocion ? 'selected' : ''}}>
+                                                    {{$promo->nombre}}
+                                                </option>
+                                            @endforeach
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+
                             </div>
                             <button type="submit" class="btn btn-round btn-primary">Update</button> &nbsp;&nbsp;
                             <button type="reset" class="btn btn-round btn-default">
-                                <a href="{{ route('promocion_show', $collection->id) }}" title="show">
+                                <a href="{{ route('servicio_show', $collection->id) }}" title="show">
                                     <i class="fa fa-refresh">
                                         Reset
                                     </i>
