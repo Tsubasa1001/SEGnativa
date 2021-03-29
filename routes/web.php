@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\PromocionController;
 use App\Http\Controllers\TrabajadorController;
 
 /*
@@ -29,6 +30,14 @@ require __DIR__.'/auth.php';
 
 /**SARIAH */
 /**GUSTAVO */
+//Promociones
+Route::get('/Promocion/index', [PromocionController::class, 'index'])->middleware(['auth'])->name('promocion_index');
+Route::get('/Promocion/create', [PromocionController::class, 'create'])->middleware(['auth'])->name('promocion_create');
+Route::post('/Promocion/store', [PromocionController::class, 'store'])->middleware(['auth'])->name('promocion_store');
+Route::get('/Promocion/show/{id}', [PromocionController::class, 'show'])->middleware(['auth'])->name('promocion_show');
+Route::get('/Promocion/edit/{id}', [PromocionController::class, 'edit'])->middleware(['auth'])->name('promocion_edit');
+Route::put('/Promocion/update/{id}', [PromocionController::class, 'update'])->middleware(['auth'])->name('promocion_update');
+Route::delete('/Promocion/destroy/{id}', [PromocionController::class, 'destroy'])->middleware(['auth'])->name('promocion_destroy');
 
 /**======================================================================== */
 /**                               E Y V E R                                 */
