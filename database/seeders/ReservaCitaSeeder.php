@@ -1,0 +1,49 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+
+class ReservaCitaSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        /*
+        for ($pk=1; $pk <= 10; $pk++) {
+            $tipo_patra = 1;
+
+            $objeto = ReservaCita::factory();
+            $item = $objeto->raw();
+
+            $name = $item['nombre'];
+            $mail = $item['email'];
+
+            $objeto->create([
+                'id' => $pk,
+                'codigo' => 'NPA'.$pk,
+                'nombre' => $name,
+                'email' => $mail,
+                'especialidad' => 1
+            ]);
+
+            $pk_user = User::all();
+            $pk_user = $pk_user->count()+1;
+            $objeto = User::factory();
+
+            $objeto->create([
+                'id' => $pk_user,
+                'name' => $name,
+                'email' => $mail,
+                'privilegio' => 3,
+                'tipo_patra' => $tipo_patra,
+                'id_patra' => $pk
+            ]);
+        }
+        */
+    }
+}

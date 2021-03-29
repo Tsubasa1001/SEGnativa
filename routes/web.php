@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PacienteController;
 use App\Http\Controllers\TrabajadorController;
+use App\Http\Controllers\ReservaCitaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,25 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 /**SARIAH */
+
+/**======================================================================== */
+/**                               S A R I A H                               */
+/**======================================================================== */
+
+/**Reserva Cita */
+Route::get('/ReservaCita/index', [ReservaCitaController::class, 'index'])->middleware(['auth'])->name('reservaCita_index');
+Route::get('/ReservaCita/create', [ReservaCitaController::class, 'create'])->middleware(['auth'])->name('reservaCita_create');
+Route::post('/ReservaCita/store', [ReservaCitaController::class, 'store'])->middleware(['auth'])->name('reservaCita_store');
+Route::get('/ReservaCita/show/{id}', [ReservaCitaController::class, 'show'])->middleware(['auth'])->name('reservaCita_show');
+Route::get('/ReservaCita/edit/{id}', [ReservaCitaController::class, 'edit'])->middleware(['auth'])->name('reservaCita_edit');
+Route::put('/ReservaCita/update/{id}', [ReservaCitaController::class, 'update'])->middleware(['auth'])->name('reservaCita_update');
+Route::delete('/ReservaCita/destroy/{id}', [ReservaCitaController::class, 'destroy'])->middleware(['auth'])->name('reservaCita_destroy');
+
+
+
+
+
+
 /**GUSTAVO */
 
 /**======================================================================== */
